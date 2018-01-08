@@ -1,5 +1,0 @@
-to linan
-
-miss
-
-me
