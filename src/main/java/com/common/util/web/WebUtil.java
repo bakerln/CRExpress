@@ -1,4 +1,4 @@
-package com.common.util;
+package com.common.util.web;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;

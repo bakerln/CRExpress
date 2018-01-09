@@ -1,8 +1,8 @@
 package com.test.controller;
 
-import com.common.util.JsonUtil;
-import com.common.util.Student;
-import com.common.util.WebUtil;
+import com.common.util.json.JsonUtil;
+import com.common.util.json.Student;
+import com.common.util.web.WebUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;

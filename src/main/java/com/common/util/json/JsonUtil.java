@@ -1,4 +1,4 @@
-package com.common.util;
+package com.common.util.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,6 +46,15 @@ public class JsonUtil {
         return null;
     }
 
+    /**
+     * 生成操作后的json串，{success:false,msg:'删除失败'}
+     * @param flag
+     * @param msg
+     * @return
+     */
+    public static String createOperaStr(boolean flag,String msg){
+        return "{\"success\":" + flag + ",\"msg\":\"" + msg + "\"}";
+    }
 
 
     /**
