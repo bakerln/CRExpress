@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @RequestMapping(value = "/add")
     public void add (HttpServletRequest request, HttpServletResponse response, BusinessMan businessMan){

@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class DataEntryController {
 
-    @Autowired
-    private DataEntryService dataEntryService;
+//    @Autowired
+//    private DataEntryService dataEntryService;
 
     @RequestMapping(value = "/add")
     public void add(HttpServletRequest request, HttpServletResponse response, TransForm transForm){
