@@ -1,128 +1,145 @@
 package com.common.util.session;
 
+import java.util.Date;
+
 /**
  * Created by LiNan on 2018-01-09.
  * Description:  系统用户Session信息
  */
 public class UserSession {
+    private int userId; //用户ID
+    private String username;//用户名
+    private String password;// 登录密码
+    private String randomCode;// 随机数
+    private int status;// 账号状态 0:正常 1:可疑 2:删除
+    private int roleId;// 角色代码 0:管理员 1:局级管理员 2:用户
+    private String userRoleStr;// 角色描述
+    private Date createDate;// 创建时间
+    private String createPersonId;// 创建人ID
+    private int orgId;// 单位id
+    private String orgName;// 单位名称
+    private String realName;//真实姓名
+    private String gender;// 性别
+    private String mobile;// 手机
+    private String userIp;// 用户IP
 
-    private int user_id;//
-    private int dwid;// 单位id
-    private String dwmc;// 单位名称
-    private String dwjb;// 单位级别
-
-    private String user_ip;// 用户IP
-    private String user_name;// 用户名
-    private String realname;// 真实性别
-    private String phone;//座机
-    private int role_id;// 角色代码
-    private String default_module;// 默认模块
-
-    private String dwlx;// 单位类型
-    private String dwsx;// 单位属性
-    private String dwfzr;//单位负责人
-
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getDwid() {
-        return dwid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDwid(int dwid) {
-        this.dwid = dwid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getDwmc() {
-        return dwmc;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDwmc(String dwmc) {
-        this.dwmc = dwmc;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getDwjb() {
-        return dwjb;
+    public String getRandomCode() {
+        return randomCode;
     }
 
-    public void setDwjb(String dwjb) {
-        this.dwjb = dwjb;
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
     }
 
-    public String getUser_ip() {
-        return user_ip;
+    public int getStatus() {
+        return status;
     }
 
-    public void setUser_ip(String user_ip) {
-        this.user_ip = user_ip;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getUserRoleStr() {
+        return userRoleStr;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setUserRoleStr(String userRoleStr) {
+        this.userRoleStr = userRoleStr;
     }
 
-    public String getPhone() {
-        return phone;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public String getCreatePersonId() {
+        return createPersonId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setCreatePersonId(String createPersonId) {
+        this.createPersonId = createPersonId;
     }
 
-    public String getDefault_module() {
-        return default_module;
+    public int getOrgId() {
+        return orgId;
     }
 
-    public void setDefault_module(String default_module) {
-        this.default_module = default_module;
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
     }
 
-    public String getDwlx() {
-        return dwlx;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setDwlx(String dwlx) {
-        this.dwlx = dwlx;
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
-    public String getDwsx() {
-        return dwsx;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setDwsx(String dwsx) {
-        this.dwsx = dwsx;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
-    public String getDwfzr() {
-        return dwfzr;
+    public String getGender() {
+        return gender;
     }
 
-    public void setDwfzr(String dwfzr) {
-        this.dwfzr = dwfzr;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getUserIp() {
+        return userIp;
+    }
+
+    public void setUserIp(String userIp) {
+        this.userIp = userIp;
     }
 }

@@ -36,17 +36,12 @@ public class LoginController {
             if (user.getStatus() == 2){
                 WebUtil.out(response, JsonUtil.createOperaStr(false, "该用户已锁定"));
             }else{
-                String ip = StringUtil.getIp(request);
                 UserSession userSession = new UserSession();
-                userSession.setUser_id(user.getId());
-                userSession.setUser_name(user.getUsername());
-                userSession.setUser_id(user.getId());
-                userSession.setUser_ip(ip);
-                userSession.setRealname(user.getRealname());
-                userSession.setPhone(user.getPhone());//电话
-                userSession.setRole_id(user.getRole_id());
-
-                userSession.setDefault_module(user.getDefault_module());// 默认模块
+                userSession.setUserId(user.getId());
+                userSession.setUsername(user.getUsername());
+                userSession.setUserIp(StringUtil.getIp(request));
+                userSession.setMobile(user.getMobile());//电话
+                userSession.setRoleId(user.getRoleId());
                 request.getSession().setAttribute("userSession", userSession);
                 //TODO 登录日志
                 WebUtil.out(response, JsonUtil.createOperaStr(true, "登录成功"));

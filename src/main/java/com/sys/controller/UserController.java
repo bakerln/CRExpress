@@ -23,6 +23,12 @@ public class UserController {
     private UserService userService;
 
 
+    /**
+     * 增加用户
+     * @param request
+     * @param response
+     * @param user
+     */
     @RequestMapping(value = "/add")
     public void add (HttpServletRequest request, HttpServletResponse response, User user){
         int flag = userService.add(user);
@@ -36,6 +42,12 @@ public class UserController {
 
     }
 
+    /**
+     * 修改用户
+     * @param request
+     * @param response
+     * @param user
+     */
     @RequestMapping(value = "/update")
     public void update(HttpServletRequest request, HttpServletResponse response, User user){
         int flag = userService.update(user);
@@ -47,6 +59,12 @@ public class UserController {
 
     }
 
+    /**
+     * 删除用户
+     * @param request
+     * @param response
+     * @param id
+     */
     @RequestMapping(value = "/delete")
     public void delete(HttpServletRequest request, HttpServletResponse response, int id){
         int flag = userService.delete(id);
@@ -57,9 +75,14 @@ public class UserController {
         }
     }
 
-
-    @RequestMapping(value = "/resetPass")
-    public void resetPassWord(HttpServletRequest request, HttpServletResponse response, int id) {
+    /**
+     * 修改密码
+     * @param request
+     * @param response
+     * @param id
+     */
+    @RequestMapping(value = "/updatePassword")
+    public void updatePassword(HttpServletRequest request, HttpServletResponse response, int id) {
         int flag = userService.resetPassWord(id);
         if (flag == 0)
             WebUtil.out(response, JsonUtil.createOperaStr(false, "操作失败"));

@@ -4,28 +4,27 @@ import java.util.Date;
 
 /**
  * Created by linan on 2018-01-04.
- * Description:
+ * Description: 用户model
  */
 public class User {
-    private int id;
-    private String userRoleStr;// 角色描述
-    private String code;// 代码
-    private String username;// Email
+    private int id; //用户ID
+    private String username;//用户名
     private String password;// 登录密码
-    private String randomcode;// 随机数
-    private int status;// 账号状态
-    private String realname;// 姓名
+    private String randomCode;// 随机数
+    private int status;// 账号状态 0:正常 1:可疑 2:删除
+    private int roleId;// 角色代码 0:管理员 1:局级管理员 2:用户
+    private String userRoleStr;// 角色描述
+    private Date createDate;// 创建时间
+    private String createPersonId;// 创建人ID
+    private int orgId;// 单位id
+    private String orgName;// 单位名称
+    private String realName;//真实姓名
     private String gender;// 性别
     private String mobile;// 手机
-    private String phone;// 座机
-    private int role_id;// 角色代码
-    private String default_module;// 默认模块
-    private Date create_date;// 创建时间
-    private String create_person;// 创建人
 
-    private int dwid;// 单位id
-    private String dwmc;// 单位名称
-    private String dwjb;// 单位级别
+
+//    private String default_module;// 默认模块
+
 
     public int getId() {
         return id;
@@ -33,22 +32,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUserRoleStr() {
-        return userRoleStr;
-    }
-
-    public void setUserRoleStr(String userRoleStr) {
-        this.userRoleStr = userRoleStr;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getUsername() {
@@ -67,12 +50,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRandomcode() {
-        return randomcode;
+    public String getRandomCode() {
+        return randomCode;
     }
 
-    public void setRandomcode(String randomcode) {
-        this.randomcode = randomcode;
+    public void setRandomCode(String randomCode) {
+        this.randomCode = randomCode;
     }
 
     public int getStatus() {
@@ -83,12 +66,52 @@ public class User {
         this.status = status;
     }
 
-    public String getRealname() {
-        return realname;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getUserRoleStr() {
+        return userRoleStr;
+    }
+
+    public void setUserRoleStr(String userRoleStr) {
+        this.userRoleStr = userRoleStr;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getCreatePersonId() {
+        return createPersonId;
+    }
+
+    public void setCreatePersonId(String createPersonId) {
+        this.createPersonId = createPersonId;
+    }
+
+    public int getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
     public String getGender() {
@@ -107,67 +130,11 @@ public class User {
         this.mobile = mobile;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public int getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
-    }
-
-    public String getDefault_module() {
-        return default_module;
-    }
-
-    public void setDefault_module(String default_module) {
-        this.default_module = default_module;
-    }
-
-    public Date getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
-    }
-
-    public String getCreate_person() {
-        return create_person;
-    }
-
-    public void setCreate_person(String create_person) {
-        this.create_person = create_person;
-    }
-
-    public int getDwid() {
-        return dwid;
-    }
-
-    public void setDwid(int dwid) {
-        this.dwid = dwid;
-    }
-
-    public String getDwmc() {
-        return dwmc;
-    }
-
-    public void setDwmc(String dwmc) {
-        this.dwmc = dwmc;
-    }
-
-    public String getDwjb() {
-        return dwjb;
-    }
-
-    public void setDwjb(String dwjb) {
-        this.dwjb = dwjb;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 }
