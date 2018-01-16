@@ -1,4 +1,4 @@
-package com.common.util;
+package com.common.util.web;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
@@ -19,6 +19,10 @@ public class WebUtil {
      */
     public static void out(HttpServletResponse response, String str) {
         response.setContentType("text/html; charset=UTF-8");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
             if (str.length() < 100)
                 response.getWriter().println(str);

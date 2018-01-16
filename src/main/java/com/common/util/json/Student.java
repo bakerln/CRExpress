@@ -1,4 +1,4 @@
-package com.common.util;
+package com.common.util.json;
 
 /**
  * Created by LiNan on 2017-12-26.
