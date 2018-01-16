@@ -7,6 +7,8 @@ package com.sys.model;
 public class Org {
     private int id; //单位ID
     private String OrgStr; //单位名称
+    private int flag;//单位级别 0:总公司 1:路局
+    private int upperUnitId;//上级单位
 
     public int getId() {
         return id;
