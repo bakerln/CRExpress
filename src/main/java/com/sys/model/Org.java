@@ -25,4 +25,20 @@ public class Org {
     public void setOrgStr(String orgStr) {
         OrgStr = orgStr;
     }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public int getUpperUnitId() {
+        return upperUnitId;
+    }
+
+    public void setUpperUnitId(int upperUnitId) {
+        this.upperUnitId = upperUnitId;
+    }
 }

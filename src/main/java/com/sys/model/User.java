@@ -15,11 +15,11 @@ public class User {
     private int roleId;// 角色代码 0:管理员 1:局级管理员 2:用户
     private String userRoleStr;// 角色描述
     private Date createDate;// 创建时间
-    private String createPersonId;// 创建人ID
+    private int createPersonId;// 创建人ID
     private int orgId;// 单位id
     private String orgName;// 单位名称
     private String realName;//真实姓名
-    private String gender;// 性别
+    private String gender;// 性别 男:1 女:2
     private String mobile;// 手机
 
 
@@ -90,11 +90,11 @@ public class User {
         this.createDate = createDate;
     }
 
-    public String getCreatePersonId() {
+    public int getCreatePersonId() {
         return createPersonId;
     }
 
-    public void setCreatePersonId(String createPersonId) {
+    public void setCreatePersonId(int createPersonId) {
         this.createPersonId = createPersonId;
     }
 
