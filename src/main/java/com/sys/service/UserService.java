@@ -1,5 +1,7 @@
 package com.sys.service;
 
+import com.common.util.String.Md5SaltUtil;
+import com.common.util.String.StringUtil;
 import com.common.util.session.UserSession;
 import com.sys.dao.UserDao;
 import com.sys.model.User;
@@ -23,13 +25,26 @@ public class UserService {
     public int add(User user, UserSession userSession) {
         int userId = userDao.createUserId();
         user.setId(userId);
+        user.setStatus(0);
         user.setCreateDate(new Date());
-        user.setCreatePersonId(userSession.getUserId());
+
+        if(userSession != null){
+            user.setCreatePersonId(userSession.getUserId());
+        }
+        String salt = StringUtil.createRandomCode(8);
+        Md5SaltUtil encoderMd5 = new Md5SaltUtil(salt, "MD5");
+        user.setRandomCode(salt);
+        user.setPassword(encoderMd5.encode(user.getPassword()));
+
         return userDao.add(user);
     }
 
-    public int update(User user) {
-        return 0;
+    //修改信息
+    public int update(User user, UserSession userSession) {
+        if(userSession != null){
+            user.setId(userSession.getUserId());
+        }
+        return userDao.update(user);
     }
 
     public int delete(User user) {

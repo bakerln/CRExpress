@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by LiNan on 2018-01-03.
  * Description:
  */
-@RequestMapping(value = "/")
+@RequestMapping(value = "/helloWorld")
 @Controller
 public class HelloController {
     @Autowired

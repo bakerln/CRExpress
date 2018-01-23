@@ -19,7 +19,7 @@ public class User {
     private int orgId;// 单位id
     private String orgName;// 单位名称
     private String realName;//真实姓名
-    private String gender;// 性别 男:1 女:2
+    private int gender;// 性别 男:1 女:2
     private String mobile;// 手机
 
 
@@ -114,11 +114,11 @@ public class User {
         this.orgName = orgName;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 

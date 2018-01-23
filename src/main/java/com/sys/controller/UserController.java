@@ -54,11 +54,12 @@ public class UserController {
      */
     @RequestMapping(value = "/update")
     public void update(HttpServletRequest request, HttpServletResponse response, User user){
-        int flag = userService.update(user);
+        UserSession userSession = SessionUtil.getUserSession(request);
+        int flag = userService.update(user,userSession);
         if(flag == 0){
-            WebUtil.out(response,JsonUtil.createOperaStr(false,"保存失败"));
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"修改失败"));
         }else if (flag == 1){
-            WebUtil.out(response,JsonUtil.createOperaStr(true,"保存成功"));
+            WebUtil.out(response,JsonUtil.createOperaStr(true,"修改成功"));
         }
 
     }

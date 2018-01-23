@@ -25,11 +25,18 @@ public class UserDao {
     }
 
     public int add(User user) {
-        String sql = "INSERT INTO SYS_USER (ID,USERNAME,PASSWORD,RANDOMCODE,STATUS,ROLEID,USERROLESTR,CREATEDATE,CREATEPERSONID,ORGID,ORGNAME,REALNAME,MOBILE,GENDER) " +
-                "VALUES(:id,:username,:password,:randomCode,:status,:roleId,:userRoleStr,:createDate,:createPersonId,:orgId,:orgName,:realName,:gender,:mobile) ";
+        String sql = "INSERT INTO SYS_USER (ID,USERNAME,PASSWORD,RANDOMCODE,STATUS,ROLEID,USERROLESTR,CREATEDATE,CREATEPERSONID,ORGID,ORGNAME,REALNAME,GENDER,MOBILE) " +
+                     "VALUES(:id,:username,:password,:randomCode,:status,:roleId,:userRoleStr,:createDate,:createPersonId,:orgId,:orgName,:realName,:gender,:mobile) ";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
         return namedParameterJdbcTemplate.update(sql, paramSource);
 
+    }
+
+    public int update(User user) {
+        String sql = "update SYS_USER set REALNAME=:realName,GENDER=:gender,MOBILE=:mobile where ID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
     }
 }
