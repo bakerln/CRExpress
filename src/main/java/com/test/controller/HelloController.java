@@ -1,7 +1,6 @@
 package com.test.controller;
 
 import com.common.util.json.JsonUtil;
-import com.common.util.json.Student;
 import com.common.util.web.WebUtil;
 import com.test.dao.HelloDao;
 import com.test.model.UserTest;
@@ -38,13 +37,4 @@ public class HelloController {
         int flag = helloDao.add(user);
     }
 
-
-    @RequestMapping(value = "json")
-    public void json(HttpServletRequest request, HttpServletResponse response){
-        Student linan = new Student();
-        linan.setAge(26);
-        linan.setName("linan");
-        String json = JsonUtil.toStr(linan);
-        WebUtil.out(response,json);
-    }
 }

@@ -2,8 +2,10 @@ package com.sys.service;
 
 import com.common.util.String.Md5SaltUtil;
 import com.common.util.String.StringUtil;
+import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
 import com.sys.dao.UserDao;
+import com.sys.dto.UserLoginDTO;
 import com.sys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,12 +61,24 @@ public class UserService {
         return null;
     }
 
-    public boolean checkPass(User user, String password) {
-        return false;
-    }
 
     public ArrayList<User> listUser(User user){
         return null;
     }
 
+    public ResultMsg checkLogin(UserLoginDTO userLoginDTO) {
+
+        return new ResultMsg(1,"","");
+    }
+
+    public UserSession saveSession(User user, UserLoginDTO userLoginDTO) {
+        UserSession userSession = new UserSession();
+        userSession.setUserId(user.getId());
+        userSession.setUsername(user.getUsername());
+        userSession.setUserIp(userLoginDTO.getIp());
+        userSession.setMobile(user.getMobile());//电话
+        userSession.setRoleId(user.getRoleId());
+        userSession.setOrgId(user.getOrgId());
+        return userSession;
+    }
 }

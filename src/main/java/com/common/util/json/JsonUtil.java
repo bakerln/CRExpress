@@ -69,25 +69,4 @@ public class JsonUtil {
     }
 
 
-
-
-
-    public static void main(String[] args) {
-        String  jsonString = "{\"name\":\"MaHesh\", \"age\":21}";
-        String  jsonString1 = "[{\"name\":\"MaHesh\", \"age\":21},{\"name\":\"LiNan\", \"age\":27}]";
-        Student st = null;
-        try {
-            st = objectMapper.readValue(jsonString,Student.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        HashMap<String,String> map = (HashMap<String, String>) toObject(jsonString,Map.class);
-//        System.out.println(toStr(map));
-        Student sta = (Student) toObject(toStr(st),Student.class);
-        System.out.println(createPageJson(1,sta));
-        ArrayList<Student> list = (ArrayList<Student>) toObject(jsonString1,List.class);
-//        ArrayList<Student> list1 = (ArrayList<Student>) toObject(jsonString1,List.class);
-//        System.out.println(toStr(list));
-    }
 }
