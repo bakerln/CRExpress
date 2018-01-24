@@ -1,21 +1,21 @@
-package com.sys.model;
+package com.save.model;
 
 import java.util.Date;
 
-public class Information {
+public class InformationBACK {
     private int id; //用户ID
-    private String fromStation; //发站
+    private String portStation; //口岸站
     private String trainNumber; //车号
     private Date fromnDate; //发车日期
-    private String exitPortStation; //出境口岸站
-    private String overseasStation;  //境外到站
-    private String overseasCountry; //境外到站所属国
-    private String overseasCity;  //境外到站所属城市
+    private String domesticStation; //国内到站
+    private String overseasStation;  //境外发
+    private String overseasCountry; //境外发站所属国
+    private String overseasCity;  //境外发站所属城市
     private int trainState; //车次类型 0：中欧 1：中亚
-    private int trainType; //往返类型 0：去程 1：返程
     private int orgID; //所属单位id
     private int updaterID; //添加人id
     private Date creatTime; //录入时间
+    private Date updateTime; //更新时间
     private String trainQty; //列数
     private String carriageQty; //车数
     private String twHeavyQty; //20尺重箱数
@@ -27,6 +27,7 @@ public class Information {
     private String TEU; //折合TEU
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
+    private String remark; //备注
 
     public int getId() {
         return id;
@@ -36,12 +37,12 @@ public class Information {
         this.id = id;
     }
 
-    public String getFromStation() {
-        return fromStation;
+    public String getPortStation() {
+        return portStation;
     }
 
-    public void setFromStation(String fromStation) {
-        this.fromStation = fromStation;
+    public void setPortStation(String portStation) {
+        this.portStation = portStation;
     }
 
     public String getTrainNumber() {
@@ -60,8 +61,12 @@ public class Information {
         this.fromnDate = fromnDate;
     }
 
-    public void setExitPortStation(String exitPortStation) {
-        this.exitPortStation = exitPortStation;
+    public String getDomesticStation() {
+        return domesticStation;
+    }
+
+    public void setDomesticStation(String domesticStation) {
+        this.domesticStation = domesticStation;
     }
 
     public String getOverseasStation() {
@@ -96,14 +101,6 @@ public class Information {
         this.trainState = trainState;
     }
 
-    public int getTrainType() {
-        return trainType;
-    }
-
-    public void setTrainType(int trainType) {
-        this.trainType = trainType;
-    }
-
     public int getOrgID() {
         return orgID;
     }
@@ -126,6 +123,14 @@ public class Information {
 
     public void setCreatTime(Date creatTime) {
         this.creatTime = creatTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getTrainQty() {
@@ -216,7 +221,11 @@ public class Information {
         this.coldWeight = coldWeight;
     }
 
-    public String getExitPortStation() {
-        return exitPortStation;
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }
