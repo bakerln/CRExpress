@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by LiNan on 2017-12-26.
@@ -13,6 +15,7 @@ public class StringUtil {
     private static final char[] codeSequenceRandom = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4',
             '5', '6', '7', '8', '9', '0' };
 
+    private static final String  mobilrex = "^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$";
     /**
      * 判断字符串是null或空
      * @param str
@@ -79,5 +82,16 @@ public class StringUtil {
             serialNum += strRand;
         }
         return serialNum;
+    }
+
+    /**
+     * 判断是否是电话号码
+     * @param phoneNum
+     * @return
+     */
+    public static Boolean isPhoneNum(String phoneNum){
+        Pattern p = Pattern.compile(mobilrex);
+        Matcher m = p.matcher(phoneNum);
+       return m.matches();
     }
 }

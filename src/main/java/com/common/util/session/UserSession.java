@@ -19,9 +19,12 @@ public class UserSession {
     private int orgId;// 单位id
     private String orgName;// 单位名称
     private String realName;//真实姓名
-    private String gender;// 性别
+    private int gender;// 性别
     private String mobile;// 手机
     private String userIp;// 用户IP
+    private String client_os_info;
+    private String client_browser_info;
+    private String client_browser_version;
 
     public int getUserId() {
         return userId;
@@ -119,11 +122,11 @@ public class UserSession {
         this.realName = realName;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -141,5 +144,29 @@ public class UserSession {
 
     public void setUserIp(String userIp) {
         this.userIp = userIp;
+    }
+
+    public String getClient_os_info() {
+        return client_os_info;
+    }
+
+    public void setClient_os_info(String client_os_info) {
+        this.client_os_info = client_os_info;
+    }
+
+    public String getClient_browser_info() {
+        return client_browser_info;
+    }
+
+    public void setClient_browser_info(String client_browser_info) {
+        this.client_browser_info = client_browser_info;
+    }
+
+    public String getClient_browser_version() {
+        return client_browser_version;
+    }
+
+    public void setClient_browser_version(String client_browser_version) {
+        this.client_browser_version = client_browser_version;
     }
 }
