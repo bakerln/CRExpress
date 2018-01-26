@@ -1,6 +1,7 @@
 package com.sys.controller;
 
 import com.common.util.json.JsonUtil;
+import com.common.util.json.ResultMsg;
 import com.common.util.session.SessionUtil;
 import com.common.util.session.UserSession;
 import com.common.util.web.WebUtil;
@@ -35,13 +36,13 @@ public class UserController {
     @RequestMapping(value = "/add")
     public void add (HttpServletRequest request, HttpServletResponse response, User user){
         UserSession userSession = SessionUtil.getUserSession(request);
-        int flag = userService.add(user,userSession);
-        if(flag == 0){
-            WebUtil.out(response,JsonUtil.createOperaStr(false,"保存失败"));
-        }else if (flag == 1){
+        ResultMsg resultMsg = userService.add(user,userSession);
+        if(0 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(true,"保存成功"));
-        }else if (flag == 2){
-            WebUtil.out(response,JsonUtil.createOperaStr(false,"用户代码已存在"));
+        }else if (1 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"保存失败"));
+        }else if (2 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"用户已存在"));
         }
 
     }
@@ -55,13 +56,14 @@ public class UserController {
     @RequestMapping(value = "/update")
     public void update(HttpServletRequest request, HttpServletResponse response, User user){
         UserSession userSession = SessionUtil.getUserSession(request);
-        int flag = userService.update(user,userSession);
-        if(flag == 0){
-            WebUtil.out(response,JsonUtil.createOperaStr(false,"修改失败"));
-        }else if (flag == 1){
+        ResultMsg resultMsg = userService.update(user,userSession);
+        if (0 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(true,"修改成功"));
+        }else if(1 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"修改失败"));
+        }else if(2 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"用户名已存在"));
         }
-
     }
 
     /**
