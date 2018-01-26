@@ -28,13 +28,24 @@ public class UserService {
         if(userSession != null){
             int userId = userDao.createUserId();
             user.setId(userId);
-            user.setStatus(0);
+            user.setStatus(1);
             user.setCreateDate(new Date());
             user.setCreatePersonId(userSession.getUserId());
             String salt = StringUtil.createRandomCode(8);
             Md5SaltUtil encoderMd5 = new Md5SaltUtil(salt, "MD5");
             user.setRandomCode(salt);
             user.setPassword(encoderMd5.encode(user.getPassword()));
+            //判断是否是路局管理员
+            if (2 == userSession.getRoleId()){
+                user.setRoleId(3);
+                user.setOrgId(userSession.getOrgId());
+                user.setOrgName(userSession.getOrgName());
+            }else{
+                //系统管理员
+                user.setRoleId(2);
+                user.setOrgId(user.getOrgId());
+                user.setOrgName(user.getOrgName());
+            }
             //判断数据合法
             if(null == userDao.getUserByPhoneNum(user.getMobile()) && null == userDao.getUserByUsername(user.getUsername())){
                 userDao.add(user);
@@ -65,17 +76,42 @@ public class UserService {
         }
     }
 
-    public int delete(User user) {
-        return 0;
+    //删除用户
+    public ResultMsg delete(User user) {
+        //无子用户
+        if(3 == user.getRoleId()){
+            user.setStatus(2);
+            userDao.delete(user);
+            return new ResultMsg(0,"删除成功",null);
+        }else if (null == userDao.getUserByCreateUserId(user.getId())){
+            user.setStatus(2);
+            userDao.delete(user);
+            return new ResultMsg(0,"删除成功",null);
+        }else {
+            return new ResultMsg(1,"有子用户未删除",null);
+        }
     }
 
-    public int resetPassWord(User user,String newPassword) {
-        return 0;
+    public ResultMsg resetPassWord(UserSession userSession, String password, String newPassword) {
+        User user;
+        if (!StringUtil.isNullOrEmpty(userSession.getUsername())){
+            user = userDao.getUserByPhoneNum(userSession.getUsername());
+            //判断原密码是否正确
+            Md5SaltUtil encoderMd5 = new Md5SaltUtil(user.getRandomCode(), "MD5");
+            String passwordWithSalt = encoderMd5.encode(password);
+            if (passwordWithSalt.equals(user.getPassword())){
+                //修改密码
+                user.setPassword(encoderMd5.encode(newPassword));
+                userDao.resetPassWord(user);
+                return new ResultMsg(0,"修改成功",null);
+            }else{
+                return new ResultMsg(1,"原密码不正确",null);
+            }
+        }else {
+            return new ResultMsg(2,"未取得登陆信息",null);
+        }
     }
 
-    public User getByUsername(String username) {
-        return null;
-    }
 
 
     public ArrayList<User> listUser(User user){
@@ -98,7 +134,7 @@ public class UserService {
             //判断用户密码是否正确
             if (passwordWithSalt.equals(user.getPassword())){
                 //判断用户状态
-                if(user.getStatus() == 0){
+                if(user.getStatus() == 1){
                     return new ResultMsg(0,"登录成功",user);
                 }else{
                     return new ResultMsg(1,"用户已被删除",null);
@@ -112,6 +148,7 @@ public class UserService {
         }
     }
 
+    //保存session
     public UserSession saveSession(User user, UserLoginDTO userLoginDTO) {
         UserSession userSession = new UserSession();
 

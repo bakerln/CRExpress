@@ -63,4 +63,28 @@ public class UserDao {
         else
             return null;
     }
+
+    public int resetPassWord(User user) {
+        String sql = "update SYS_USER set PASSWORD=:password where ID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
+    }
+
+    public int delete(User user) {
+        String sql = "update SYS_USER set STATE=:state where ID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
+    }
+
+    public User getUserByCreateUserId(int id) {
+        Object[] params = new Object[] { id };
+        String sql = "select * from SYS_USER where CREATEPERSONID=?";
+        List<User> list = jdbcTemplate.query(sql, params, new BeanPropertyRowMapper(User.class));
+        if (list.size() > 0)
+            return list.get(0);
+        else
+            return null;
+    }
 }
