@@ -2,7 +2,7 @@ package com.save.model;
 
 import java.util.Date;
 
-public class InformationBACK {
+public class BackInfo {
     private int id; //用户ID
     private String portStation; //口岸站
     private String trainNumber; //车号
@@ -13,17 +13,17 @@ public class InformationBACK {
     private String overseasCity;  //境外发站所属城市
     private int trainState; //车次类型 0：中欧 1：中亚
     private int orgID; //所属单位id
-    private int updaterID; //添加人id
+    private int userID; //添加人id
     private Date creatTime; //录入时间
     private Date updateTime; //更新时间
     private String trainQty; //列数
     private String carriageQty; //车数
-    private String twHeavyQty; //20尺重箱数
-    private String twEmptyQty; //20尺空箱数
-    private String ftHeavyQty; //40尺重箱数
-    private String frEmptyQty; //40尺空箱数
-    private String ffHeavyQty; //45尺重箱数
-    private String ffEmptyQty; //45尺空箱数
+    private String HeavyQtyTwenty; //20尺重箱数
+    private String EmptyQtyTwenty; //20尺空箱数
+    private String HeavyQtyForty; //40尺重箱数
+    private String EmptyQtyForty; //40尺空箱数
+    private String HeavyQtyFortyfive; //45尺重箱数
+    private String EmptyQtyFortyfive; //45尺空箱数
     private String TEU; //折合TEU
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
@@ -109,12 +109,12 @@ public class InformationBACK {
         this.orgID = orgID;
     }
 
-    public int getUpdaterID() {
-        return updaterID;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUpdaterID(int updaterID) {
-        this.updaterID = updaterID;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public Date getCreatTime() {
@@ -149,52 +149,52 @@ public class InformationBACK {
         this.carriageQty = carriageQty;
     }
 
-    public String getTwHeavyQty() {
-        return twHeavyQty;
+    public String getHeavyQtyTwenty() {
+        return HeavyQtyTwenty;
     }
 
-    public void setTwHeavyQty(String twHeavyQty) {
-        this.twHeavyQty = twHeavyQty;
+    public void setHeavyQtyTwenty(String heavyQtyTwenty) {
+        HeavyQtyTwenty = heavyQtyTwenty;
     }
 
-    public String getTwEmptyQty() {
-        return twEmptyQty;
+    public String getEmptyQtyTwenty() {
+        return EmptyQtyTwenty;
     }
 
-    public void setTwEmptyQty(String twEmptyQty) {
-        this.twEmptyQty = twEmptyQty;
+    public void setEmptyQtyTwenty(String emptyQtyTwenty) {
+        EmptyQtyTwenty = emptyQtyTwenty;
     }
 
-    public String getFtHeavyQty() {
-        return ftHeavyQty;
+    public String getHeavyQtyForty() {
+        return HeavyQtyForty;
     }
 
-    public void setFtHeavyQty(String ftHeavyQty) {
-        this.ftHeavyQty = ftHeavyQty;
+    public void setHeavyQtyForty(String heavyQtyForty) {
+        HeavyQtyForty = heavyQtyForty;
     }
 
-    public String getFrEmptyQty() {
-        return frEmptyQty;
+    public String getEmptyQtyForty() {
+        return EmptyQtyForty;
     }
 
-    public void setFrEmptyQty(String frEmptyQty) {
-        this.frEmptyQty = frEmptyQty;
+    public void setEmptyQtyForty(String emptyQtyForty) {
+        EmptyQtyForty = emptyQtyForty;
     }
 
-    public String getFfHeavyQty() {
-        return ffHeavyQty;
+    public String getHeavyQtyFortyfive() {
+        return HeavyQtyFortyfive;
     }
 
-    public void setFfHeavyQty(String ffHeavyQty) {
-        this.ffHeavyQty = ffHeavyQty;
+    public void setHeavyQtyFortyfive(String heavyQtyFortyfive) {
+        HeavyQtyFortyfive = heavyQtyFortyfive;
     }
 
-    public String getFfEmptyQty() {
-        return ffEmptyQty;
+    public String getEmptyQtyFortyfive() {
+        return EmptyQtyFortyfive;
     }
 
-    public void setFfEmptyQty(String ffEmptyQty) {
-        this.ffEmptyQty = ffEmptyQty;
+    public void setEmptyQtyFortyfive(String emptyQtyFortyfive) {
+        EmptyQtyFortyfive = emptyQtyFortyfive;
     }
 
     public String getTEU() {
