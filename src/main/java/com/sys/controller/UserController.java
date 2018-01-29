@@ -42,7 +42,7 @@ public class UserController {
         }else if (1 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(false,"保存失败"));
         }else if (2 == resultMsg.getErrcode()){
-            WebUtil.out(response,JsonUtil.createOperaStr(false,"用户已存在"));
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"用户名或电话已存在"));
         }
 
     }

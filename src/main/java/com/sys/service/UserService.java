@@ -51,8 +51,17 @@ public class UserService {
             if(null == userDao.getUserByPhoneNum(user.getMobile()) && null == userDao.getUserByUsername(user.getUsername())){
                 userDao.add(user);
                 return new ResultMsg(0,"添加成功",null);
+            }else{
+                //已删除
+                User userHasName = userDao.getUserByUsername(user.getUsername());
+                User userHasMobile = userDao.getUserByPhoneNum(user.getMobile());
+                if (2 == userHasMobile.getStatus() || 2 == userHasName.getStatus()){
+                    userDao.add(user);
+                    return new ResultMsg(0,"添加成功",null);
+                }
+                return new ResultMsg(2,"用户名或电话已存在",null);
             }
-            return new ResultMsg(2,"用户已存在",null);
+
         }else {
             return new ResultMsg(1,"未取得登陆信息",null);
         }
