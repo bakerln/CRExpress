@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by linan on 2018-01-04.
@@ -114,8 +115,10 @@ public class UserService {
 
 
 
-    public ArrayList<User> listUser(User user){
-        return null;
+    public List<User> listUser(User user){
+        List<User> userlist = userDao.listUser(user);
+
+        return userlist;
     }
 
     public ResultMsg checkLogin(UserLoginDTO userLoginDTO) {
@@ -166,5 +169,9 @@ public class UserService {
         userSession.setClient_browser_info(userLoginDTO.getClient_browser_info());
 
         return userSession;
+    }
+
+    public int listCount(User user) {
+        return userDao.listCount(user);
     }
 }

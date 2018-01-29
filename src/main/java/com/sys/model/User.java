@@ -1,12 +1,14 @@
 package com.sys.model;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 
 /**
  * Created by linan on 2018-01-04.
  * Description: 用户model
  */
-public class User {
+public class User extends SearchPage{
     private int id; //用户ID
     private String username;//用户名
     private String password;// 登录密码

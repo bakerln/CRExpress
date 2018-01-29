@@ -109,7 +109,8 @@ public class UserController {
      */
     @RequestMapping(value = "/listUser")
     public void listUser(HttpServletRequest request, HttpServletResponse response, User user){
-        ArrayList<User> userList = userService.listUser(user);
-        WebUtil.out(response,JsonUtil.toStr(userList));
+        int count = userService.listCount(user);
+        String json = JsonUtil.createPageJson(count,userService.listUser(user));
+        WebUtil.out(response,json);
     }
 }
