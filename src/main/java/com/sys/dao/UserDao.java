@@ -1,5 +1,7 @@
 package com.sys.dao;
 
+//import com.alibaba.druid.sql.PagerUtils;
+import com.common.util.page.PageUtil;
 import com.sys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -9,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,5 +63,45 @@ public class UserDao {
             return list.get(0);
         else
             return null;
+    }
+
+    public int resetPassWord(User user) {
+        String sql = "update SYS_USER set PASSWORD=:password where ID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
+    }
+
+    public int delete(User user) {
+        String sql = "update SYS_USER set STATE=:state where ID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
+    }
+
+    public User getUserByCreateUserId(int id) {
+        Object[] params = new Object[] { id };
+        String sql = "select * from SYS_USER where CREATEPERSONID=?";
+        List<User> list = jdbcTemplate.query(sql, params, new BeanPropertyRowMapper(User.class));
+        if (list.size() > 0)
+            return list.get(0);
+        else
+            return null;
+    }
+
+    public int listCount(User user) {
+        String sql = "select count(*) from SYS_USER where CREATEPERSONID=:id";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
+    }
+
+    public List<User> listUser(User user) {
+        String sql = "select * from SYS_USER where CREATEPERSONID=:id";
+        sql = PageUtil.createOraclePageSQL(sql,user.getPage(),user.getLimit());
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        List<User> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(User.class));
+        return list;
     }
 }

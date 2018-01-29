@@ -11,8 +11,8 @@ public class UserSession {
     private String username;//用户名
     private String password;// 登录密码
     private String randomCode;// 随机数
-    private int status;// 账号状态 0:正常 1:可疑 2:删除
-    private int roleId;// 角色代码 0:管理员 1:局级管理员 2:用户
+    private int status;// 账号状态 1:正常 2:可疑 3:删除
+    private int roleId;// 角色代码 1:管理员 2:局级管理员 3:用户
     private String userRoleStr;// 角色描述
     private Date createDate;// 创建时间
     private String createPersonId;// 创建人ID
