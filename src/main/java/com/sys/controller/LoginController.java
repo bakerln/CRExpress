@@ -37,7 +37,7 @@ public class LoginController {
      * @param userLoginDTO
      */
     @RequestMapping(value = "/checkLogin")
-    public void checkLogin(HttpServletRequest request, HttpServletResponse response, UserLoginDTO userLoginDTO){
+    public void checkLogin(HttpServletRequest request, HttpServletResponse response, UserLoginDTO userLoginDTO) {
         //处理用户请求所带信息
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         userLoginDTO.setIp(StringUtil.getIp(request));
@@ -50,28 +50,29 @@ public class LoginController {
         ResultMsg resultMsg = userService.checkLogin(userLoginDTO);
 
         int state = resultMsg.getErrcode();
-        if (state == 0){
+        if (state == 0) {
             //登陆成功
-            User user = (User)resultMsg.getData();
-            UserSession userSession = userService.saveSession(user,userLoginDTO);
+            User user = (User) resultMsg.getData();
+            UserSession userSession = userService.saveSession(user, userLoginDTO);
             request.getSession().setAttribute("userSession", userSession);
             //TODO 登录日志（userLoginDTO）
             WebUtil.out(response, JsonUtil.createOperaStr(true, "登录成功"));
         } else {
             //登陆失败
-            WebUtil.out(response, JsonUtil.createOperaStr(false,"用户名或密码错误"));
+            WebUtil.out(response, JsonUtil.createOperaStr(false, "用户名或密码错误"));
         }
     }
 
     /**
      * 首页面
+     *
      * @param request
      * @param response
      */
     @RequestMapping(value = "/index")
-    public void index(HttpServletRequest request,HttpServletResponse response){
+    public void index(HttpServletRequest request, HttpServletResponse response) {
         UserSession userSession = SessionUtil.getUserSession(request);
-        if (userSession != null){
+        if (userSession != null) {
             ArrayList<String> list = new ArrayList<String>();
             list.add("");
         }
@@ -79,6 +80,7 @@ public class LoginController {
 
     /**
      * 退出
+     *
      * @param request
      * @param response
      */
