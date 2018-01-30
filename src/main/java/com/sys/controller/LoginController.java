@@ -56,7 +56,8 @@ public class LoginController {
             UserSession userSession = userService.saveSession(user,userLoginDTO);
             request.getSession().setAttribute("userSession", userSession);
             //TODO 登录日志（userLoginDTO）
-            WebUtil.out(response, JsonUtil.createOperaStr(true, "登录成功"));
+            String ss = JsonUtil.createOperaStr(true, "登录成功",userSession);
+            WebUtil.out(response, JsonUtil.createOperaStr(true, "登录成功",userSession));
         } else {
             //登陆失败
             WebUtil.out(response, JsonUtil.createOperaStr(false,"用户名或密码错误"));

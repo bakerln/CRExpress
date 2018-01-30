@@ -56,6 +56,16 @@ public class JsonUtil {
         return "{\"success\":" + flag + ",\"msg\":\"" + msg + "\"}";
     }
 
+    /**
+     * 生成操作后的json串，{success:false,msg:'删除失败',object 对象}
+     * @param flag
+     * @param msg
+     * @param object
+     * @return
+     */
+    public static String createOperaStr(boolean flag,String msg,Object object){
+        return "{\"success\":" + flag + ",\"msg\":\"" + msg + "\",\"object\":" + toStr(object) + "}";
+    }
 
     /**
      * 分页查JSON串

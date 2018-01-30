@@ -55,7 +55,7 @@ public class UserService {
                 //已删除
                 User userHasName = userDao.getUserByUsername(user.getUsername());
                 User userHasMobile = userDao.getUserByPhoneNum(user.getMobile());
-                if (2 == userHasMobile.getStatus() || 2 == userHasName.getStatus()){
+                if (2 == userHasMobile.getStatus() && 2 == userHasName.getStatus()){
                     userDao.add(user);
                     return new ResultMsg(0,"添加成功",null);
                 }
