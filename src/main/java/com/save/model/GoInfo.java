@@ -11,7 +11,7 @@ public class GoInfo {
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
-    private int trainState; //车次类型 0：中欧 1：中亚
+    private int trainState; //车次类型 1：中欧 2：中亚
     private int orgID; //所属单位id
     private int userID; //添加人id
     private Date creatTime; //录入时间
@@ -28,6 +28,9 @@ public class GoInfo {
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
     private String remark; //备注
+    private String isDelete; //是否删除 1：可用  2：删除
+    private String type;// 存储状态 1：暂存 2：提交
+
 
     public int getId() {
         return id;
@@ -227,6 +230,21 @@ public class GoInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
