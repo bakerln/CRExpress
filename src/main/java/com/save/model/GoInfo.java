@@ -28,8 +28,8 @@ public class GoInfo {
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
     private String remark; //备注
-    private String isDelete; //是否删除 1：可用  2：删除
-    private String type;// 存储状态 1：暂存 2：提交
+    private int isDelete; //是否删除 1：可用  2：删除
+    private int type;// 存储状态 1：暂存 2：提交
 
 
     public int getId() {
@@ -231,19 +231,20 @@ public class GoInfo {
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    public String getIsDelete() {
+
+    public int getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(String isDelete) {
+    public void setIsDelete(int isDelete) {
         this.isDelete = isDelete;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 }
