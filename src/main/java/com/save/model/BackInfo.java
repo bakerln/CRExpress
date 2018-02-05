@@ -6,7 +6,7 @@ public class BackInfo {
     private int id; //用户ID
     private String portStation; //口岸站
     private String trainNumber; //车号
-    private Date fromnDate; //发车日期
+    private Date fromDate; //发车日期
     private String domesticStation; //国内到站
     private String overseasStation;  //境外发
     private String overseasCountry; //境外发站所属国
@@ -14,23 +14,22 @@ public class BackInfo {
     private int trainState; //车次类型 0：中欧 1：中亚
     private int orgID; //所属单位id
     private int userID; //添加人id
-    private Date creatTime; //录入时间
+    private Date createTime; //录入时间
     private Date updateTime; //更新时间
-    private String trainQty; //列数
-    private String carriageQty; //车数
-    private String HeavyQtyTwenty; //20尺重箱数
-    private String EmptyQtyTwenty; //20尺空箱数
-    private String HeavyQtyForty; //40尺重箱数
-    private String EmptyQtyForty; //40尺空箱数
-    private String HeavyQtyFortyfive; //45尺重箱数
-    private String EmptyQtyFortyfive; //45尺空箱数
-    private String TEU; //折合TEU
-    private String coldTEU; //其中冷藏箱TEU
-    private String coldWeight; //冷藏箱重量
+    private int trainQty; //列数
+    private int carriageQty; //车数
+    private int HeavyQtyTwenty; //20尺重箱数
+    private int EmptyQtyTwenty; //20尺空箱数
+    private int HeavyQtyForty; //40尺重箱数
+    private int EmptyQtyForty; //40尺空箱数
+    private int HeavyQtyFortyfive; //45尺重箱数
+    private int EmptyQtyFortyfive; //45尺空箱数
+    private int TEU; //折合TEU
+    private int coldTEU; //其中冷藏箱TEU
+    private int coldWeight; //冷藏箱重量
     private String remark; //备注
     private int isDelete; //是否删除 1：可用  2：删除
-    private int type;// 存储状态 1：暂存 2：提交
-
+    private int saveType;// 存储状态 1：暂存 2：提交
 
 
     public int getId() {
@@ -57,12 +56,12 @@ public class BackInfo {
         this.trainNumber = trainNumber;
     }
 
-    public Date getFromnDate() {
-        return fromnDate;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFromnDate(Date fromnDate) {
-        this.fromnDate = fromnDate;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
     public String getDomesticStation() {
@@ -121,12 +120,12 @@ public class BackInfo {
         this.userID = userID;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
@@ -137,91 +136,91 @@ public class BackInfo {
         this.updateTime = updateTime;
     }
 
-    public String getTrainQty() {
+    public int getTrainQty() {
         return trainQty;
     }
 
-    public void setTrainQty(String trainQty) {
+    public void setTrainQty(int trainQty) {
         this.trainQty = trainQty;
     }
 
-    public String getCarriageQty() {
+    public int getCarriageQty() {
         return carriageQty;
     }
 
-    public void setCarriageQty(String carriageQty) {
+    public void setCarriageQty(int carriageQty) {
         this.carriageQty = carriageQty;
     }
 
-    public String getHeavyQtyTwenty() {
+    public int getHeavyQtyTwenty() {
         return HeavyQtyTwenty;
     }
 
-    public void setHeavyQtyTwenty(String heavyQtyTwenty) {
+    public void setHeavyQtyTwenty(int heavyQtyTwenty) {
         HeavyQtyTwenty = heavyQtyTwenty;
     }
 
-    public String getEmptyQtyTwenty() {
+    public int getEmptyQtyTwenty() {
         return EmptyQtyTwenty;
     }
 
-    public void setEmptyQtyTwenty(String emptyQtyTwenty) {
+    public void setEmptyQtyTwenty(int emptyQtyTwenty) {
         EmptyQtyTwenty = emptyQtyTwenty;
     }
 
-    public String getHeavyQtyForty() {
+    public int getHeavyQtyForty() {
         return HeavyQtyForty;
     }
 
-    public void setHeavyQtyForty(String heavyQtyForty) {
+    public void setHeavyQtyForty(int heavyQtyForty) {
         HeavyQtyForty = heavyQtyForty;
     }
 
-    public String getEmptyQtyForty() {
+    public int getEmptyQtyForty() {
         return EmptyQtyForty;
     }
 
-    public void setEmptyQtyForty(String emptyQtyForty) {
+    public void setEmptyQtyForty(int emptyQtyForty) {
         EmptyQtyForty = emptyQtyForty;
     }
 
-    public String getHeavyQtyFortyfive() {
+    public int getHeavyQtyFortyfive() {
         return HeavyQtyFortyfive;
     }
 
-    public void setHeavyQtyFortyfive(String heavyQtyFortyfive) {
+    public void setHeavyQtyFortyfive(int heavyQtyFortyfive) {
         HeavyQtyFortyfive = heavyQtyFortyfive;
     }
 
-    public String getEmptyQtyFortyfive() {
+    public int getEmptyQtyFortyfive() {
         return EmptyQtyFortyfive;
     }
 
-    public void setEmptyQtyFortyfive(String emptyQtyFortyfive) {
+    public void setEmptyQtyFortyfive(int emptyQtyFortyfive) {
         EmptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public String getTEU() {
+    public int getTEU() {
         return TEU;
     }
 
-    public void setTEU(String TEU) {
+    public void setTEU(int TEU) {
         this.TEU = TEU;
     }
 
-    public String getColdTEU() {
+    public int getColdTEU() {
         return coldTEU;
     }
 
-    public void setColdTEU(String coldTEU) {
+    public void setColdTEU(int coldTEU) {
         this.coldTEU = coldTEU;
     }
 
-    public String getColdWeight() {
+    public int getColdWeight() {
         return coldWeight;
     }
 
-    public void setColdWeight(String coldWeight) {
+    public void setColdWeight(int coldWeight) {
         this.coldWeight = coldWeight;
     }
 
@@ -241,11 +240,11 @@ public class BackInfo {
         this.isDelete = isDelete;
     }
 
-    public int getType() {
-        return type;
+    public int getSaveType() {
+        return saveType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setSaveType(int saveType) {
+        this.saveType = saveType;
     }
 }
