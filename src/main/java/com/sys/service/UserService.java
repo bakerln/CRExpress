@@ -2,6 +2,7 @@ package com.sys.service;
 
 import com.common.util.String.Md5SaltUtil;
 import com.common.util.String.StringUtil;
+import com.common.util.global.GlobalConst;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
 import com.sys.dao.UserDao;
@@ -35,7 +36,8 @@ public class UserService {
             String salt = StringUtil.createRandomCode(8);
             Md5SaltUtil encoderMd5 = new Md5SaltUtil(salt, "MD5");
             user.setRandomCode(salt);
-            user.setPassword(encoderMd5.encode(user.getPassword()));
+            //用户初始密码11111111
+            user.setPassword(encoderMd5.encode(GlobalConst.password));
             //判断是否是路局管理员
             if (2 == userSession.getRoleId()){
                 user.setRoleId(3);
@@ -55,11 +57,22 @@ public class UserService {
                 //已删除
                 User userHasName = userDao.getUserByUsername(user.getUsername());
                 User userHasMobile = userDao.getUserByPhoneNum(user.getMobile());
-                if (2 == userHasMobile.getStatus() && 2 == userHasName.getStatus()){
+                if (null != userHasName && null != userHasMobile){
+                    if (2 == userHasMobile.getStatus() && 2 == userHasName.getStatus()){
+                        userDao.add(user);
+                        return new ResultMsg(0,"添加成功",null);
+                    }else {
+                        return new ResultMsg(2,"用户名或电话已存在",null);
+                    }
+                } else if (null != userHasName && 2 == userHasName.getStatus()){
                     userDao.add(user);
                     return new ResultMsg(0,"添加成功",null);
+                } else if (null != userHasMobile && 2 == userHasMobile.getStatus()){
+                    userDao.add(user);
+                    return new ResultMsg(0,"添加成功",null);
+                }else{
+                    return new ResultMsg(2,"用户名或电话已存在",null);
                 }
-                return new ResultMsg(2,"用户名或电话已存在",null);
             }
 
         }else {
@@ -67,6 +80,7 @@ public class UserService {
         }
 
     }
+
 
     //修改信息
     public ResultMsg update(User user, UserSession userSession) {
@@ -124,8 +138,8 @@ public class UserService {
 
 
 
-    public List<User> listUser(User user){
-        List<User> userlist = userDao.listUser(user);
+    public List<User> listUser(UserSession userSession){
+        List<User> userlist = userDao.listUser(userSession);
 
         return userlist;
     }
@@ -180,7 +194,7 @@ public class UserService {
         return userSession;
     }
 
-    public int listCount(User user) {
-        return userDao.listCount(user);
+    public int listCount(UserSession userSession) {
+        return userDao.listCount(userSession);
     }
 }
