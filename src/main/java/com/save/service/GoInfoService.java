@@ -1,14 +1,15 @@
 package com.save.service;
 
+import com.alibaba.druid.wall.violation.ErrorCode;
+import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
 import com.save.dao.GoInfoDao;
 import com.save.model.GoInfo;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by linan on 2018-01-04.
@@ -21,14 +22,48 @@ public class GoInfoService {
     private GoInfoDao goInfoDao;
 
     //新增信息
-        public int add(GoInfo goInfo,UserSession userSession) {
-        int goInfoID = goInfoDao.createGOInfoId();
-        goInfo.setId(goInfoID);//添加信息ID
-        goInfo.setCreatTime(new java.util.Date());//添加创建时间
-        goInfo.setUserID(userSession.getUserId());//添加创建用户ID
-        return goInfoDao.add(goInfo);
-
+    public ResultMsg add(GoInfo goInfo, UserSession userSession) {
+        if (userSession != null) {
+               //判断用户角色
+            if (1 == userSession.getRoleId()) {
+                return new ResultMsg(2, "该用户不允许添加信息", null);
+            }
+            else {
+                int goInfoID = goInfoDao.createGOInfoId();
+                goInfo.setId(goInfoID);//添加信息ID
+                goInfo.setCreatTime(new Date());//添加创建时间
+                goInfo.setUserID(userSession.getUserId());//添加创建用户ID
+                goInfo.setIsDelete(1);//设置删除状态为“可用”
+                goInfo.setType(1);//设置存储状态为“暂存”
+                goInfoDao.add(goInfo);
+            }
+            //判断数据合法性 数据合法性规则未知
+        } else {
+            return new ResultMsg(1, "未取得登录信息", null);
+        }
+        return new ResultMsg(0,"添加成功",null);
     }
 
-    }
+     //修改信息
+     public ResultMsg update(GoInfo goInfo, UserSession userSession) {
+         if (userSession != null) {
+             //判断存储状态
+             if(2 == goInfo.getType()){
+                 return new ResultMsg(2,"已提交信息不允许修改",null);
+             } else {
+                 goInfo.setUpdateTime(new Date());//添加更新时间
+                 goInfoDao.update(goInfo);
+             }
+         } else {
+             return new ResultMsg(1, "未取得登录信息", null);
+         }
+         return new ResultMsg(0, "修改成功", null);
+     }
+
+
+
+
+
+
+}
 

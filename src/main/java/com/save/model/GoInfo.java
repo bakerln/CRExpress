@@ -6,20 +6,20 @@ public class GoInfo {
     private int id; //信息ID
     private String fromStation; //发站
     private String trainNumber; //车号
-    private Date fromnDate; //发车日期
+    private Date fromDate; //发车日期
     private String exitPortStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
-    private int trainState; //车次类型 0：中欧 1：中亚
+    private int trainState; //车次类型 1：中欧 2：中亚
     private int orgID; //所属单位id
     private int userID; //添加人id
-    private Date creatTime; //录入时间
+    private Date createTime; //录入时间
     private Date updateTime; //更新时间
     private String trainQty; //列数
     private String carriageQty; //车数
     private String HeavyQtyTwenty; //20尺重箱数
-    private String emptyQtyTwenty; //20尺空箱数
+    private String EmptyQtyTwenty; //20尺空箱数
     private String HeavyQtyForty; //40尺重箱数
     private String EmptyQtyForty; //40尺空箱数
     private String HeavyQtyFortyfive; //45尺重箱数
@@ -28,6 +28,9 @@ public class GoInfo {
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
     private String remark; //备注
+    private int isDelete; //是否删除 1：可用  2：删除
+    private int type;// 存储状态 1：暂存 2：提交
+
 
     public int getId() {
         return id;
@@ -53,12 +56,12 @@ public class GoInfo {
         this.trainNumber = trainNumber;
     }
 
-    public Date getFromnDate() {
-        return fromnDate;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFromnDate(Date fromnDate) {
-        this.fromnDate = fromnDate;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
     public String getExitPortStation() {
@@ -117,12 +120,12 @@ public class GoInfo {
         this.userID = userID;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
@@ -158,11 +161,11 @@ public class GoInfo {
     }
 
     public String getEmptyQtyTwenty() {
-        return emptyQtyTwenty;
+        return EmptyQtyTwenty;
     }
 
-    public void setEmptyQtyTwenty(String emptyQtyTwenty) {
-        this.emptyQtyTwenty = emptyQtyTwenty;
+    public void setEmptyQtyTwenty(String EmptyQtyTwenty) {
+        this.EmptyQtyTwenty = EmptyQtyTwenty;
     }
 
     public String getHeavyQtyForty() {
@@ -227,6 +230,22 @@ public class GoInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public int getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(int isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
 
