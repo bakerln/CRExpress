@@ -81,4 +81,12 @@ public class GoInfoDao {
     }
 
 
+    public int createTrainId() {
+        String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
+    }
+    public  String createDate() {
+        String sql = "select to_char(sysdate,'yyyyMMdd') from dual";
+        return jdbcTemplate.queryForObject(sql,String.class);
+    }
 }
