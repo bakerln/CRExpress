@@ -19,10 +19,12 @@ public class WebUtil {
      */
     public static void out(HttpServletResponse response, String str) {
         response.setContentType("text/html; charset=UTF-8");
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        //给前端发数据如果涉及到了跨域，需要加允许跨域的head
+        response.setHeader("Access-Control-Allow-Origin", "http://10.1.167.188:8090");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         try {
             if (str.length() < 100)
                 response.getWriter().println(str);

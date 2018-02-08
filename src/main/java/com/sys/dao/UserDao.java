@@ -2,6 +2,7 @@ package com.sys.dao;
 
 //import com.alibaba.druid.sql.PagerUtils;
 import com.common.util.page.PageUtil;
+import com.common.util.session.UserSession;
 import com.sys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -89,18 +90,18 @@ public class UserDao {
             return null;
     }
 
-    public int listCount(User user) {
-        String sql = "select count(*) from SYS_USER where CREATEPERSONID=:id";
+    public int listCount(UserSession userSession) {
+        String sql = "select count(*) from SYS_USER where CREATEPERSONID=:userId";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(userSession);
         return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
     }
 
-    public List<User> listUser(User user) {
-        String sql = "select * from SYS_USER where CREATEPERSONID=:id";
-        sql = PageUtil.createOraclePageSQL(sql,user.getPage(),user.getLimit());
+    public List<User> listUser(UserSession userSession) {
+        String sql = "select * from SYS_USER where CREATEPERSONID=:userId";
+        sql = PageUtil.createOraclePageSQL(sql,userSession.getPage(),userSession.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(userSession);
         List<User> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(User.class));
         return list;
     }

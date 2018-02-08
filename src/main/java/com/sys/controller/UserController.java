@@ -47,6 +47,7 @@ public class UserController {
 
     }
 
+
     /**
      * 修改用户
      * @param request
@@ -105,12 +106,34 @@ public class UserController {
      * 查看所建用户
      * @param request
      * @param response
-     * @param user
      */
     @RequestMapping(value = "/listUser")
-    public void listUser(HttpServletRequest request, HttpServletResponse response, User user){
-        int count = userService.listCount(user);
-        String json = JsonUtil.createPageJson(count,userService.listUser(user));
-        WebUtil.out(response,json);
+    public void listUser(HttpServletRequest request, HttpServletResponse response,User user){
+        UserSession userSession = SessionUtil.getUserSession(request);
+        userSession.setLimit(user.getLimit());
+        userSession.setPage(user.getPage());
+        if (null != userSession){
+            int count = userService.listCount(userSession);
+            String json = JsonUtil.createPageJson(count,userService.listUser(userSession));
+            WebUtil.out(response,json);
+        }else{
+            WebUtil.out(response, JsonUtil.createOperaStr(false, "用户未登录"));
+        }
+
+    }
+
+    /**
+     * 查看个人信息
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/info")
+    public void info(HttpServletRequest request,HttpServletResponse response){
+        UserSession userSession = SessionUtil.getUserSession(request);
+        if (null == userSession){
+            WebUtil.out(response, JsonUtil.createOperaStr(false, "操作失败"));
+        }else{
+            WebUtil.out(response, JsonUtil.createOperaStr(true, "操作成功",userSession ));
+        }
     }
 }

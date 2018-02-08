@@ -1,24 +1,21 @@
 package com.export.model;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 /**
  * Created by linan on 2018-01-04.
  * Description: 发站model
  */
-public class FormGO {
-    private int id; //信息ID
+public class FormGo extends SearchPage{
+
     private String fromStation; //发站
     private String trainNumber; //车号
-    private Date fromnDate; //发车日期
+    private Date departDate; //发车日期
     private String exitPortStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
-    private int trainState; //车次类型 0：中欧 1：中亚
-    private int orgID; //所属单位id
-    private int userID; //添加人id
-    private Date creatTime; //录入时间
-    private Date updateTime; //更新时间
     private String trainQty; //列数
     private String carriageQty; //车数
     private String HeavyQtyTwenty; //20尺重箱数
@@ -32,13 +29,12 @@ public class FormGO {
     private String coldWeight; //冷藏箱重量
     private String remark; //备注
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int id; //信息ID
+    private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
+    private int orgID; //所属路局id
+    private int userID; //添加人id
+    private Date createTime; //录入时间
+    private Date updateTime; //更新时间
 
     public String getFromStation() {
         return fromStation;
@@ -56,12 +52,12 @@ public class FormGO {
         this.trainNumber = trainNumber;
     }
 
-    public Date getFromnDate() {
-        return fromnDate;
+    public Date getDepartDate() {
+        return departDate;
     }
 
-    public void setFromnDate(Date fromnDate) {
-        this.fromnDate = fromnDate;
+    public void setDepartDate(Date departDate) {
+        this.departDate = departDate;
     }
 
     public String getExitPortStation() {
@@ -94,46 +90,6 @@ public class FormGO {
 
     public void setOverseasCity(String overseasCity) {
         this.overseasCity = overseasCity;
-    }
-
-    public int getTrainState() {
-        return trainState;
-    }
-
-    public void setTrainState(int trainState) {
-        this.trainState = trainState;
-    }
-
-    public int getOrgID() {
-        return orgID;
-    }
-
-    public void setOrgID(int orgID) {
-        this.orgID = orgID;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getTrainQty() {
@@ -230,6 +186,54 @@ public class FormGO {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTrainType() {
+        return trainType;
+    }
+
+    public void setTrainType(int trainType) {
+        this.trainType = trainType;
+    }
+
+    public int getOrgID() {
+        return orgID;
+    }
+
+    public void setOrgID(int orgID) {
+        this.orgID = orgID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
 

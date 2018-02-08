@@ -1,12 +1,14 @@
 package com.common.util.session;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 
 /**
  * Created by LiNan on 2018-01-09.
  * Description:  系统用户Session信息
  */
-public class UserSession {
+public class UserSession extends SearchPage{
     private int userId; //用户ID
     private String username;//用户名
     private String password;// 登录密码
