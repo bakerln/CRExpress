@@ -105,5 +105,13 @@ public class GoInfoService {
         return new ResultMsg(0, "提交成功", null);
     }
 
+//    //得到id
+//    public void getId(String[] args) {
+//        int id = goInfoDao.createTrainId();
+//        String date = goInfoDao.createDate();
+//        String flag = "1";//中欧1、中亚2
+//        String idString = date + flag + id;
+//        System.out.println(idString);
+//    }
 }
 
