@@ -1,8 +1,10 @@
 package com.save.model;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 
-public class GoInfo {
+public class GoInfo extends SearchPage{
     private int id; //信息ID
     private String fromStation; //发站
     private String trainNumber; //车号
