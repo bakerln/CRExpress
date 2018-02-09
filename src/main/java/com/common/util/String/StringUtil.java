@@ -94,4 +94,61 @@ public class StringUtil {
         Matcher m = p.matcher(phoneNum);
        return m.matches();
     }
+
+    /**
+     * 根据字符串转换，如果为null，则变成""
+     * @param obj
+     * @return
+     */
+    public static String getSafeStr(Object obj) {
+        return obj == null ? "" : String.valueOf(obj);
+    }
+
+    /**
+     * 根据字符串转换，如果为null，则变成defaultStr
+     * @param obj
+     * @param strDefault
+     * @return
+     */
+    public static String getSafeStr(Object obj, String strDefault) {
+        return obj == null ? strDefault : String.valueOf(obj);
+    }
+
+    /**
+     * 根据字符串转换，如果为null，则变成0
+     * @param obj
+     * @return
+     */
+    public static int getSafeInt(Object obj) {
+        return obj == null || obj.toString().equals("") ? 0 : Integer.parseInt(String.valueOf(obj));
+    }
+
+    /**
+     * 根据字符串转换，如果为null，则变成defaultInt
+     * @param obj
+     * @param nDefualt
+     * @return
+     */
+    public static int getSafeInt(Object obj, int nDefualt) {
+        return obj == null || obj.toString().equals("") ? nDefualt : Integer.parseInt(String.valueOf(obj));
+    }
+
+    /**
+     * 根据字符串转换，如果为null，则变成0
+     * @param obj
+     * @return
+     */
+    public static double getSafeDouble(Object obj) {
+        return obj == null ? 0 : Double.parseDouble(String.valueOf(obj));
+    }
+
+    /**
+     * 根据字符串转换，如果为null，则变成defaultDouble
+     * @param obj
+     * @param nDefualt
+     * @return
+     */
+    public static double getSafeDouble(Object obj, double nDefualt) {
+        return obj == null ? 0 : Double.parseDouble(String.valueOf(obj));
+    }
 }
