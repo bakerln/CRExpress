@@ -55,6 +55,7 @@ public class UserService {
                 return new ResultMsg(0,"添加成功",null);
             }else{
                 //已删除
+                //TODO 删除后重新添加导致用户名不唯一
                 User userHasName = userDao.getUserByUsername(user.getUsername());
                 User userHasMobile = userDao.getUserByPhoneNum(user.getMobile());
                 if (null != userHasName && null != userHasMobile){
@@ -86,15 +87,22 @@ public class UserService {
     public ResultMsg update(User user, UserSession userSession) {
         if(userSession != null){
             user.setId(userSession.getUserId());
-            if(null == userDao.getUserByPhoneNum(user.getMobile()) && null == userDao.getUserByUsername(user.getUsername())){
-                if (StringUtil.isNullOrEmpty(user.getRealName())) user.setRealName(userSession.getRealName());
-                if (user.getGender() == 0) user.setGender(userSession.getGender());
-                if (StringUtil.isNullOrEmpty(user.getMobile())) user.setRealName(userSession.getMobile());
-                if (StringUtil.isNullOrEmpty(user.getUsername())) user.setUsername(userSession.getUsername());
-                userDao.update(user);
-                return new ResultMsg(0,"修改成功",null);
+            if (!userSession.getUsername().equals(user.getUsername())){
+                if (null != userDao.getUserByUsername(user.getUsername())){
+                    return new ResultMsg(2,"用户名已占用",null);
+                }
             }
-            return new ResultMsg(2,"用户名已占用",null);
+            if (!userSession.getMobile().equals(user.getMobile())){
+                if (null != userDao.getUserByPhoneNum(user.getMobile())){
+                    return new ResultMsg(3,"电话已占用",null);
+                }
+            }
+            if (StringUtil.isNullOrEmpty(user.getRealName())) user.setRealName(userSession.getRealName());
+            if (user.getGender() == 0) user.setGender(userSession.getGender());
+            if (StringUtil.isNullOrEmpty(user.getMobile())) user.setMobile(userSession.getMobile());
+            if (StringUtil.isNullOrEmpty(user.getUsername())) user.setUsername(userSession.getUsername());
+            userDao.update(user);
+            return new ResultMsg(0,"修改成功",null);
         }else {
             return new ResultMsg(1,"未取得登陆信息",null);
         }
@@ -116,17 +124,17 @@ public class UserService {
         }
     }
 
-    public ResultMsg resetPassWord(UserSession userSession, String password, String newPassword) {
-        User user;
-        if (!StringUtil.isNullOrEmpty(userSession.getUsername())){
-            user = userDao.getUserByPhoneNum(userSession.getUsername());
+    //修改密码
+    public ResultMsg updatePassword(UserSession userSession, String password, String newPassword) {
+        if (null != userSession){
+            User user = userDao.getUserByUserID(userSession.getUserId());
             //判断原密码是否正确
             Md5SaltUtil encoderMd5 = new Md5SaltUtil(user.getRandomCode(), "MD5");
             String passwordWithSalt = encoderMd5.encode(password);
             if (passwordWithSalt.equals(user.getPassword())){
                 //修改密码
                 user.setPassword(encoderMd5.encode(newPassword));
-                userDao.resetPassWord(user);
+                userDao.updatePassword(user);
                 return new ResultMsg(0,"修改成功",null);
             }else{
                 return new ResultMsg(1,"原密码不正确",null);
@@ -163,7 +171,7 @@ public class UserService {
                 if(user.getStatus() == 1){
                     return new ResultMsg(0,"登录成功",user);
                 }else{
-                    return new ResultMsg(1,"用户已被删除",null);
+                    return new ResultMsg(3,"用户已被删除",null);
                 }
             }else{
                 return new ResultMsg(1,"密码错误",null);
@@ -196,5 +204,18 @@ public class UserService {
 
     public int listCount(UserSession userSession) {
         return userDao.listCount(userSession);
+    }
+
+    public ResultMsg resetPassword(User user) {
+        if(0 != user.getId()){
+            User oldUser = userDao.getUserByUserID(user.getId());
+            String salt = oldUser.getRandomCode();
+            //用户初始密码11111111
+            Md5SaltUtil encoderMd5 = new Md5SaltUtil(salt, "MD5");
+            user.setPassword(encoderMd5.encode(GlobalConst.password));
+           userDao.resetPassword(user);
+           return new ResultMsg(0,"修改成功",null);
+        } else
+            return new ResultMsg(1,"重置失败",null);
     }
 }

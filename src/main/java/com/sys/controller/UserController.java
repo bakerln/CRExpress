@@ -64,6 +64,8 @@ public class UserController {
             WebUtil.out(response,JsonUtil.createOperaStr(false,"修改失败"));
         }else if(2 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(false,"用户名已存在"));
+        }else if(3 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"电话号已存在"));
         }
     }
 
@@ -91,9 +93,9 @@ public class UserController {
      * @param newPassword
      */
     @RequestMapping(value = "/updatePassword")
-    public void updatePassword(HttpServletRequest request, HttpServletResponse response, String password,String newPassword) {
+    public void updatePassword(HttpServletRequest request, HttpServletResponse response, String password, String newPassword) {
         UserSession userSession = SessionUtil.getUserSession(request);
-        ResultMsg resultMsg = userService.resetPassWord(userSession,password,newPassword);
+        ResultMsg resultMsg = userService.updatePassword(userSession,password,newPassword);
         if (0 == resultMsg.getErrcode())
             WebUtil.out(response, JsonUtil.createOperaStr(true, "操作成功"));
         else if (1 == resultMsg.getErrcode())
@@ -135,5 +137,20 @@ public class UserController {
         }else{
             WebUtil.out(response, JsonUtil.createOperaStr(true, "操作成功",userSession ));
         }
+    }
+
+    /**
+     * 重置密码
+     * @param request
+     * @param response
+     * @param user
+     */
+    @RequestMapping(value = "/resetPassword")
+    public void resetPassword (HttpServletRequest request,HttpServletResponse response,User user){
+        ResultMsg resultMsg = userService.resetPassword(user);
+        if (0 == resultMsg.getErrcode())
+            WebUtil.out(response, JsonUtil.createOperaStr(true, "操作成功"));
+        else
+            WebUtil.out(response, JsonUtil.createOperaStr(false, "操作失败"));
     }
 }
