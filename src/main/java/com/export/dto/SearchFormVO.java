@@ -1,24 +1,26 @@
 package com.export.dto;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 
 /**
  * Created by LiNan on 2018-01-30.
  * Description: Form查询VO
  */
-public class SearchFormVO {
-    private String FormType; // formBack、formGo
+public class SearchFormVO extends SearchPage{
+    private String formType; // formBack、formGo
     private int orgID; //所属路局id
-    private Date departDateBegin; //发车日期开始
-    private Date departDateEnd; //发车日期结束
+    private String departDateBegin; //发车日期开始
+    private String departDateEnd; //发车日期结束
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
 
     public String getFormType() {
-        return FormType;
+        return formType;
     }
 
     public void setFormType(String formType) {
-        FormType = formType;
+        this.formType = formType;
     }
 
     public int getOrgID() {
@@ -29,19 +31,19 @@ public class SearchFormVO {
         this.orgID = orgID;
     }
 
-    public Date getDepartDateBegin() {
+    public String getDepartDateBegin() {
         return departDateBegin;
     }
 
-    public void setDepartDateBegin(Date departDateBegin) {
+    public void setDepartDateBegin(String departDateBegin) {
         this.departDateBegin = departDateBegin;
     }
 
-    public Date getDepartDateEnd() {
+    public String getDepartDateEnd() {
         return departDateEnd;
     }
 
-    public void setDepartDateEnd(Date departDateEnd) {
+    public void setDepartDateEnd(String departDateEnd) {
         this.departDateEnd = departDateEnd;
     }
 

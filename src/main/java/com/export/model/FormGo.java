@@ -12,29 +12,31 @@ public class FormGo extends SearchPage{
     private String fromStation; //发站
     private String trainNumber; //车号
     private Date departDate; //发车日期
-    private String exitPortStation; //出境口岸站
+    private String exitportStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
-    private String trainQty; //列数
-    private String carriageQty; //车数
-    private String HeavyQtyTwenty; //20尺重箱数
-    private String emptyQtyTwenty; //20尺空箱数
-    private String HeavyQtyForty; //40尺重箱数
-    private String EmptyQtyForty; //40尺空箱数
-    private String HeavyQtyFortyfive; //45尺重箱数
-    private String EmptyQtyFortyfive; //45尺空箱数
-    private String TEU; //折合TEU
-    private String coldTEU; //其中冷藏箱TEU
-    private String coldWeight; //冷藏箱重量
+    private int trainQty; //列数
+    private int carriageQty; //车数
+    private int heavyQtyTwenty; //20尺重箱数
+    private int emptyQtyTwenty; //20尺空箱数
+    private int heavyQtyForty; //40尺重箱数
+    private int emptyQtyForty; //40尺空箱数
+    private int heavyQtyFortyfive; //45尺重箱数
+    private int emptyQtyFortyfive; //45尺空箱数
+    private int TEU; //折合TEU
+    private int coldTEU; //其中冷藏箱TEU
+    private int coldWeight; //冷藏箱重量
     private String remark; //备注
+    private int totalLoad;//整车
 
-    private int id; //信息ID
+    private String id; //信息ID
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
-    private int orgID; //所属路局id
-    private int userID; //添加人id
+    private int orgId; //所属路局id
+    private int userId; //添加人id
     private Date createTime; //录入时间
     private Date updateTime; //更新时间
+    private int status;//状态  1：暂存 2：提交 3：删除
 
     public String getFromStation() {
         return fromStation;
@@ -60,12 +62,12 @@ public class FormGo extends SearchPage{
         this.departDate = departDate;
     }
 
-    public String getExitPortStation() {
-        return exitPortStation;
+    public String getExitportStation() {
+        return exitportStation;
     }
 
-    public void setExitPortStation(String exitPortStation) {
-        this.exitPortStation = exitPortStation;
+    public void setExitportStation(String exitportStation) {
+        this.exitportStation = exitportStation;
     }
 
     public String getOverseasStation() {
@@ -92,91 +94,91 @@ public class FormGo extends SearchPage{
         this.overseasCity = overseasCity;
     }
 
-    public String getTrainQty() {
+    public int getTrainQty() {
         return trainQty;
     }
 
-    public void setTrainQty(String trainQty) {
+    public void setTrainQty(int trainQty) {
         this.trainQty = trainQty;
     }
 
-    public String getCarriageQty() {
+    public int getCarriageQty() {
         return carriageQty;
     }
 
-    public void setCarriageQty(String carriageQty) {
+    public void setCarriageQty(int carriageQty) {
         this.carriageQty = carriageQty;
     }
 
-    public String getHeavyQtyTwenty() {
-        return HeavyQtyTwenty;
+    public int getHeavyQtyTwenty() {
+        return heavyQtyTwenty;
     }
 
-    public void setHeavyQtyTwenty(String heavyQtyTwenty) {
-        HeavyQtyTwenty = heavyQtyTwenty;
+    public void setHeavyQtyTwenty(int heavyQtyTwenty) {
+        this.heavyQtyTwenty = heavyQtyTwenty;
     }
 
-    public String getEmptyQtyTwenty() {
+    public int getEmptyQtyTwenty() {
         return emptyQtyTwenty;
     }
 
-    public void setEmptyQtyTwenty(String emptyQtyTwenty) {
+    public void setEmptyQtyTwenty(int emptyQtyTwenty) {
         this.emptyQtyTwenty = emptyQtyTwenty;
     }
 
-    public String getHeavyQtyForty() {
-        return HeavyQtyForty;
+    public int getHeavyQtyForty() {
+        return heavyQtyForty;
     }
 
-    public void setHeavyQtyForty(String heavyQtyForty) {
-        HeavyQtyForty = heavyQtyForty;
+    public void setHeavyQtyForty(int heavyQtyForty) {
+        this.heavyQtyForty = heavyQtyForty;
     }
 
-    public String getEmptyQtyForty() {
-        return EmptyQtyForty;
+    public int getEmptyQtyForty() {
+        return emptyQtyForty;
     }
 
-    public void setEmptyQtyForty(String emptyQtyForty) {
-        EmptyQtyForty = emptyQtyForty;
+    public void setEmptyQtyForty(int emptyQtyForty) {
+        this.emptyQtyForty = emptyQtyForty;
     }
 
-    public String getHeavyQtyFortyfive() {
-        return HeavyQtyFortyfive;
+    public int getHeavyQtyFortyfive() {
+        return heavyQtyFortyfive;
     }
 
-    public void setHeavyQtyFortyfive(String heavyQtyFortyfive) {
-        HeavyQtyFortyfive = heavyQtyFortyfive;
+    public void setHeavyQtyFortyfive(int heavyQtyFortyfive) {
+        this.heavyQtyFortyfive = heavyQtyFortyfive;
     }
 
-    public String getEmptyQtyFortyfive() {
-        return EmptyQtyFortyfive;
+    public int getEmptyQtyFortyfive() {
+        return emptyQtyFortyfive;
     }
 
-    public void setEmptyQtyFortyfive(String emptyQtyFortyfive) {
-        EmptyQtyFortyfive = emptyQtyFortyfive;
+    public void setEmptyQtyFortyfive(int emptyQtyFortyfive) {
+        this.emptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public String getTEU() {
+    public int getTEU() {
         return TEU;
     }
 
-    public void setTEU(String TEU) {
+    public void setTEU(int TEU) {
         this.TEU = TEU;
     }
 
-    public String getColdTEU() {
+    public int getColdTEU() {
         return coldTEU;
     }
 
-    public void setColdTEU(String coldTEU) {
+    public void setColdTEU(int coldTEU) {
         this.coldTEU = coldTEU;
     }
 
-    public String getColdWeight() {
+    public int getColdWeight() {
         return coldWeight;
     }
 
-    public void setColdWeight(String coldWeight) {
+    public void setColdWeight(int coldWeight) {
         this.coldWeight = coldWeight;
     }
 
@@ -188,11 +190,19 @@ public class FormGo extends SearchPage{
         this.remark = remark;
     }
 
-    public int getId() {
+    public int getTotalLoad() {
+        return totalLoad;
+    }
+
+    public void setTotalLoad(int totalLoad) {
+        this.totalLoad = totalLoad;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -204,20 +214,20 @@ public class FormGo extends SearchPage{
         this.trainType = trainType;
     }
 
-    public int getOrgID() {
-        return orgID;
+    public int getOrgId() {
+        return orgId;
     }
 
-    public void setOrgID(int orgID) {
-        this.orgID = orgID;
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getCreateTime() {
@@ -235,10 +245,14 @@ public class FormGo extends SearchPage{
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
-
-
-
-
 
 

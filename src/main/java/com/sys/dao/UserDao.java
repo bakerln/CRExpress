@@ -28,7 +28,7 @@ public class UserDao {
     //判断用户是否存在
     private String createSearchSql() {
         //1:正常 2:删除 3:可疑
-        String sql = "AND STATUS = 1";
+        String sql = " AND STATUS = 1";
 
         return sql;
     }
@@ -121,7 +121,7 @@ public class UserDao {
     }
 
     public List<User> listUser(UserSession userSession) {
-        String sql = "select * from SYS_USER where AND CREATEPERSONID=:userId";
+        String sql = "select * from SYS_USER where CREATEPERSONID=:userId";
         sql += createSearchSql();
         sql = PageUtil.createOraclePageSQL(sql,userSession.getPage(),userSession.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);

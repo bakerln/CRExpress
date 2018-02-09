@@ -37,6 +37,12 @@ public class ExportController {
 
     }
 
+    /**
+     * 导出
+     * @param request
+     * @param response
+     * @param searchFormVO
+     */
     @RequestMapping(value = "/out")
     public void out (HttpServletRequest request,HttpServletResponse response, SearchFormVO searchFormVO){
         exportService.out(request,response,searchFormVO);
