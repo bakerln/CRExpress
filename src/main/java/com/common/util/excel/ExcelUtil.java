@@ -202,21 +202,16 @@ public class ExcelUtil {
         thirdRowCell15.setCellStyle(contentStyle);
         thirdRowCell15.setCellValue("空箱");
 
-
-
-//
-//        for (short i = 0; i < excel.length; i++) {
-//            // HSSFRow,对应一行
-//            HSSFRow row = sheet.createRow(i+1);
-//            for (short j = 0; j < excel[i].length; j++) {
-//                // HSSFCell对应一格
-//                HSSFCell cell = row.createCell(j);
-//                cell.setCellValue(excel[i][j]);
-//                cell.setCellStyle(style);
-//        celltitle.setCellStyle(contentStyle);
-//        celltitle.setCellValue(titleName);
-//            }
-//        }
+        for (int i = 0; i < excel.length; i++) {
+            // HSSFRow,对应一行
+            HSSFRow row = sheet.createRow(i+4);
+            for (int j = 0; j < excel[i].length; j++) {
+                // HSSFCell对应一格
+                HSSFCell cell = row.createCell(j);
+                cell.setCellValue(excel[i][j]);
+                cell.setCellStyle(contentStyle);
+            }
+        }
         //完善可加入总额，考虑到不一定有意义，未加入
         return wb;
     }
