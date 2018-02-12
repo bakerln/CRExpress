@@ -21,7 +21,7 @@ public class CommonService {
         return commonDao.OrgList();
     }
 
-    public Org getOrg(int orgId) {
+    public Org getOrg(String orgId) {
         return commonDao.getOrg(orgId);
     }
 }

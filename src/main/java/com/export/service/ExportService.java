@@ -96,11 +96,11 @@ public class ExportService {
             String orgString = "";
 
             //判断路局
-            if (19 != searchFormVO.getOrgID()){
+            if (!searchFormVO.getOrgID().equals("19")){
                 Org org = commonDao.getOrg(searchFormVO.getOrgID());
                 orgString = org.getOrgStr();
             }
-            if (1 == searchFormVO.getTrainType()){
+            if (searchFormVO.getTrainType().equals("1")){
                report_name += orgString + "中欧班列去程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
                titleName += orgString + "中欧班列去程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
             } else {
@@ -147,11 +147,11 @@ public class ExportService {
             String orgString = "";
 
             //判断路局
-            if (19 != searchFormVO.getOrgID()){
+            if (!searchFormVO.getOrgID().equals("19")){
                 Org org = commonDao.getOrg(searchFormVO.getOrgID());
                 orgString = org.getOrgStr();
             }
-            if (1 == searchFormVO.getTrainType()){
+            if (searchFormVO.getTrainType().equals("1")){
                 report_name += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
                 titleName += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
             } else {

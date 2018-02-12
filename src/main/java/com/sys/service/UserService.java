@@ -5,8 +5,10 @@ import com.common.util.String.StringUtil;
 import com.common.util.global.GlobalConst;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
+import com.sys.dao.CommonDao;
 import com.sys.dao.UserDao;
 import com.sys.dto.UserLoginDTO;
+import com.sys.model.Org;
 import com.sys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,9 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private CommonDao commonDao;
 
     //新增用户
     public ResultMsg add(User user, UserSession userSession) {
@@ -43,11 +48,16 @@ public class UserService {
                 user.setRoleId(3);
                 user.setOrgId(userSession.getOrgId());
                 user.setOrgName(userSession.getOrgName());
-            }else{
+
+            }else if (1 == userSession.getRoleId() ){
                 //系统管理员
                 user.setRoleId(2);
+                if (0 == user.getOrgId()){
+                    return new ResultMsg(3,"未填写所属路局",null);
+                }
                 user.setOrgId(user.getOrgId());
-                user.setOrgName(user.getOrgName());
+                Org org = commonDao.getOrg(user.getOrgId()+"");
+                user.setOrgName(org.getOrgStr());
             }
             //判断数据合法
             if(null == userDao.getUserByPhoneNum(user.getMobile()) && null == userDao.getUserByUsername(user.getUsername())){

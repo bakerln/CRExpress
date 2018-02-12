@@ -41,7 +41,7 @@ public class CommonController {
      * @param response
      */
     @RequestMapping(value = "/getOrg")
-    public void getOrg(HttpServletRequest request,HttpServletResponse response,int orgId){
+    public void getOrg(HttpServletRequest request,HttpServletResponse response,String orgId){
         Org org = commonService.getOrg(orgId);
         String json = JsonUtil.toStr(org);
         WebUtil.out(response,json);

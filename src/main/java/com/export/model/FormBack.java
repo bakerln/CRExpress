@@ -28,6 +28,7 @@ public class FormBack extends SearchPage{
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
+    private int totalLoad;//整车
 
     private String id; //趟次ID
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
@@ -35,6 +36,7 @@ public class FormBack extends SearchPage{
     private int userID; //添加人id
     private Date createTime; //录入时间
     private Date updateTime; //更新时间
+    private int status;//状态  1：暂存 2：提交 3：删除
 
     public String getPortStation() {
         return portStation;
@@ -234,5 +236,21 @@ public class FormBack extends SearchPage{
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getTotalLoad() {
+        return totalLoad;
+    }
+
+    public void setTotalLoad(int totalLoad) {
+        this.totalLoad = totalLoad;
     }
 }

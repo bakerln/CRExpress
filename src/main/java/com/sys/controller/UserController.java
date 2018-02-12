@@ -43,6 +43,8 @@ public class UserController {
             WebUtil.out(response,JsonUtil.createOperaStr(false,"保存失败"));
         }else if (2 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(false,"用户名或电话已存在"));
+        }else if (3 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"未填写所属路局"));
         }
 
     }

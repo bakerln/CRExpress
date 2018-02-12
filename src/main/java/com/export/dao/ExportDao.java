@@ -26,28 +26,33 @@ public class ExportDao {
     private JdbcTemplate jdbcTemplate;
 
     private String createSearchSql(SearchFormVO searchFormVO) {
-        String sql = " AND STATUS = 2";
+        String status = "2";
+        String sql = "";
         //车次类型 1：中欧 2：中亚 0:未指定
-        if(0 != searchFormVO.getTrainType()){
+        if(!StringUtil.isNullOrEmpty(searchFormVO.getTrainType())){
             sql += " AND t.TRAINTYPE = :trainType";
         }
         //所属路局id
-        if (0 != searchFormVO.getTrainType()){
+        if (!StringUtil.isNullOrEmpty(searchFormVO.getTrainType())){
             sql += " AND t.ORGID = :orgID";
         }
-        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateBegin())) {
-            sql += " and t.DEPARTDATE >= to_date(:departDateBegin ,'yyyy-MM-dd hh24:mi:ss')";
+//        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateBegin())) {
+//            sql += " and t.DEPARTDATE >= to_date(:departDateBegin ,'yyyy-MM-dd hh24:mi:ss')";
+//        }
+//        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateEnd())) {
+//            sql += " and t.DEPARTDATE <= to_date(:departDateEnd ,'yyyy-MM-dd hh24:mi:ss') ";
+//        }
+        if (!StringUtil.isNullOrEmpty(searchFormVO.getStatus())){
+            status = searchFormVO.getStatus();
         }
-        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateEnd())) {
-            sql += " and t.DEPARTDATE <= to_date(:departDateEnd ,'yyyy-MM-dd hh24:mi:ss') ";
-        }
+        sql += " and STATUS =" + status;
         return sql;
     }
 
     //查询列表
     public int listCountGo(SearchFormVO searchFormVO) {
         String sql = "select count(*) from BIS_FORM_GO t where 1=1";
-//        sql += createSearchSql(searchFormVO);
+        sql += createSearchSql(searchFormVO);
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(searchFormVO);
         return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
@@ -55,7 +60,7 @@ public class ExportDao {
 
     public int listCountBack(SearchFormVO searchFormVO) {
         String sql = "select count(*) from BIS_FORM_BACK t where 1=1";
-//        sql += createSearchSql(searchFormVO);
+        sql += createSearchSql(searchFormVO);
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(searchFormVO);
         return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
@@ -64,7 +69,7 @@ public class ExportDao {
 
     public List listFormGo(SearchFormVO searchFormVO) {
         String sql = "select * from BIS_FORM_GO t where 1=1 ";
-//        sql += createSearchSql(searchFormVO);
+        sql += createSearchSql(searchFormVO);
         sql += " order by t.DEPARTDATE desc";
         sql = PageUtil.createOraclePageSQL(sql,searchFormVO.getPage(),searchFormVO.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -75,7 +80,7 @@ public class ExportDao {
 
     public List listFormBack(SearchFormVO searchFormVO) {
         String sql = "select * from BIS_FORM_BACK t where 1=1 ";
-//        sql += createSearchSql(searchFormVO);
+        sql += createSearchSql(searchFormVO);
         sql += " order by t.DEPARTDATE desc";
         sql = PageUtil.createOraclePageSQL(sql,searchFormVO.getPage(),searchFormVO.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);

@@ -26,7 +26,7 @@ public class CommonDao {
         return list;
     }
 
-    public Org getOrg(int orgId) {
+    public Org getOrg(String orgId) {
         Object[] params = new Object[] { orgId };
         String sql = "select * from SYS_ORG where ID=?";
         List<Org> list = jdbcTemplate.query(sql, params, new BeanPropertyRowMapper(Org.class));
