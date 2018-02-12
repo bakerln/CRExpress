@@ -10,26 +10,26 @@ import java.util.Date;
  */
 public class FormBack extends SearchPage{
     private String portStation; //口岸站
-    private String trainNumber; //车号
+    private String trainNumber; //发车车次
     private Date departDate; //发车日期
     private String domesticStation; //国内到站
-    private String overseasStation;  //境外发
-    private String overseasCountry; //境外发站所属国
+    private String overseasStation;  //境外发站
+    private String overseasCountry; //境外发站所属国家
     private String overseasCity;  //境外发站所属城市
     private int trainQty; //列数
     private int carriageQty; //车数
-    private int HeavyQtyTwenty; //20尺重箱数
-    private int EmptyQtyTwenty; //20尺空箱数
-    private int HeavyQtyForty; //40尺重箱数
-    private int EmptyQtyForty; //40尺空箱数
-    private int HeavyQtyFortyfive; //45尺重箱数
-    private int EmptyQtyFortyfive; //45尺空箱数
+    private int heavyQtyTwenty; //20尺重箱数
+    private int emptyQtyTwenty; //20尺空箱数
+    private int heavyQtyForty; //40尺重箱数
+    private int emptyQtyForty; //40尺空箱数
+    private int heavyQtyFortyfive; //45尺重箱数
+    private int emptyQtyFortyfive; //45尺空箱数
     private int TEU; //折合TEU
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
 
-    private int id; //趟次ID
+    private String id; //趟次ID
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
     private int orgID; //所属路局id
     private int userID; //添加人id
@@ -109,51 +109,51 @@ public class FormBack extends SearchPage{
     }
 
     public int getHeavyQtyTwenty() {
-        return HeavyQtyTwenty;
+        return heavyQtyTwenty;
     }
 
     public void setHeavyQtyTwenty(int heavyQtyTwenty) {
-        HeavyQtyTwenty = heavyQtyTwenty;
+        this.heavyQtyTwenty = heavyQtyTwenty;
     }
 
     public int getEmptyQtyTwenty() {
-        return EmptyQtyTwenty;
+        return emptyQtyTwenty;
     }
 
     public void setEmptyQtyTwenty(int emptyQtyTwenty) {
-        EmptyQtyTwenty = emptyQtyTwenty;
+        this.emptyQtyTwenty = emptyQtyTwenty;
     }
 
     public int getHeavyQtyForty() {
-        return HeavyQtyForty;
+        return heavyQtyForty;
     }
 
     public void setHeavyQtyForty(int heavyQtyForty) {
-        HeavyQtyForty = heavyQtyForty;
+        this.heavyQtyForty = heavyQtyForty;
     }
 
     public int getEmptyQtyForty() {
-        return EmptyQtyForty;
+        return emptyQtyForty;
     }
 
     public void setEmptyQtyForty(int emptyQtyForty) {
-        EmptyQtyForty = emptyQtyForty;
+        this.emptyQtyForty = emptyQtyForty;
     }
 
     public int getHeavyQtyFortyfive() {
-        return HeavyQtyFortyfive;
+        return heavyQtyFortyfive;
     }
 
     public void setHeavyQtyFortyfive(int heavyQtyFortyfive) {
-        HeavyQtyFortyfive = heavyQtyFortyfive;
+        this.heavyQtyFortyfive = heavyQtyFortyfive;
     }
 
     public int getEmptyQtyFortyfive() {
-        return EmptyQtyFortyfive;
+        return emptyQtyFortyfive;
     }
 
     public void setEmptyQtyFortyfive(int emptyQtyFortyfive) {
-        EmptyQtyFortyfive = emptyQtyFortyfive;
+        this.emptyQtyFortyfive = emptyQtyFortyfive;
     }
 
     public int getTEU() {
@@ -188,11 +188,11 @@ public class FormBack extends SearchPage{
         this.remark = remark;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

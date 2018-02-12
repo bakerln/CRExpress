@@ -110,7 +110,56 @@ public class ExportService {
             HSSFWorkbook wb = ExcelUtil.createExcelGO(data,titleName,searchFormVO.getDepartDateBegin(),searchFormVO.getDepartDateEnd());
             WebUtil.outExcel(response,wb,report_name);
         } else if ("formBack".equals(searchFormVO.getFormType())){
-            List<FormBack> list = exportDao.listFormGo(searchFormVO);
+            List<FormBack> list = exportDao.listFormBack(searchFormVO);
+            String[][] data = null;
+            if (list.size()<=5000) {
+                data = new String[list.size()][20];
+                for (int i = 0; i < list.size(); i++) {
+                    FormBack formBackData = list.get(i);
+                    data[i][0] = String.valueOf(i + 1);
+                    data[i][1] = StringUtil.getSafeStr(formBackData.getPortStation());
+                    data[i][2] = StringUtil.getSafeStr(formBackData.getTrainNumber());
+                    data[i][3] = StringUtil.getSafeStr(formBackData.getDepartDate());
+                    data[i][4] = StringUtil.getSafeStr(formBackData.getDomesticStation());
+                    data[i][5] = StringUtil.getSafeStr(formBackData.getOverseasStation());
+                    data[i][6] = StringUtil.getSafeStr(formBackData.getOverseasCountry());
+                    data[i][7] = StringUtil.getSafeStr(formBackData.getOverseasCity());
+                    data[i][8] = StringUtil.getSafeStr(formBackData.getTrainQty());
+                    data[i][9] = StringUtil.getSafeStr(formBackData.getCarriageQty());
+                    data[i][10] = StringUtil.getSafeStr(formBackData.getHeavyQtyTwenty());
+                    data[i][11] = StringUtil.getSafeStr(formBackData.getEmptyQtyTwenty());
+                    data[i][12] = StringUtil.getSafeStr(formBackData.getHeavyQtyForty());
+                    data[i][13] = StringUtil.getSafeStr(formBackData.getEmptyQtyForty());
+                    data[i][14] = StringUtil.getSafeStr(formBackData.getHeavyQtyFortyfive());
+                    data[i][15] = StringUtil.getSafeStr(formBackData.getEmptyQtyFortyfive());
+                    data[i][16] = StringUtil.getSafeStr(formBackData.getTEU());
+                    data[i][17] = StringUtil.getSafeStr(formBackData.getColdTEU());
+                    data[i][18] = StringUtil.getSafeStr(formBackData.getColdWeight());
+                    data[i][19] = StringUtil.getSafeStr(formBackData.getRemark());
+                }
+            }
+            if (list.size()>5000) {
+                data = new String[1][21];
+                data[0][0] = "数据总数大于5000行无法导出，请缩小查询范围！";
+            }
+            String report_name = "";
+            String titleName = "";
+            String orgString = "";
+
+            //判断路局
+            if (19 != searchFormVO.getOrgID()){
+                Org org = commonDao.getOrg(searchFormVO.getOrgID());
+                orgString = org.getOrgStr();
+            }
+            if (1 == searchFormVO.getTrainType()){
+                report_name += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
+                titleName += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
+            } else {
+                report_name += orgString + "中亚班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
+                titleName += orgString + "中亚班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
+            }
+            HSSFWorkbook wb = ExcelUtil.createExcelBack(data,titleName,searchFormVO.getDepartDateBegin(),searchFormVO.getDepartDateEnd());
+            WebUtil.outExcel(response,wb,report_name);
         }
 
 

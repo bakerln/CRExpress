@@ -29,7 +29,7 @@ public class ExportDao {
         String sql = " AND STATUS = 2";
         //车次类型 1：中欧 2：中亚 0:未指定
         if(0 != searchFormVO.getTrainType()){
-            sql += " AND t.TRAINRTYPE = :trainType";
+            sql += " AND t.TRAINTYPE = :trainType";
         }
         //所属路局id
         if (0 != searchFormVO.getTrainType()){
@@ -47,7 +47,7 @@ public class ExportDao {
     //查询列表
     public int listCountGo(SearchFormVO searchFormVO) {
         String sql = "select count(*) from BIS_FORM_GO t where 1=1";
-        sql += createSearchSql(searchFormVO);
+//        sql += createSearchSql(searchFormVO);
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(searchFormVO);
         return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
@@ -55,7 +55,7 @@ public class ExportDao {
 
     public int listCountBack(SearchFormVO searchFormVO) {
         String sql = "select count(*) from BIS_FORM_BACK t where 1=1";
-        sql += createSearchSql(searchFormVO);
+//        sql += createSearchSql(searchFormVO);
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(searchFormVO);
         return namedParameterJdbcTemplate.queryForObject(sql,paramSource,Integer.class);
@@ -64,7 +64,7 @@ public class ExportDao {
 
     public List listFormGo(SearchFormVO searchFormVO) {
         String sql = "select * from BIS_FORM_GO t where 1=1 ";
-        sql += createSearchSql(searchFormVO);
+//        sql += createSearchSql(searchFormVO);
         sql += " order by t.DEPARTDATE desc";
         sql = PageUtil.createOraclePageSQL(sql,searchFormVO.getPage(),searchFormVO.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -75,7 +75,7 @@ public class ExportDao {
 
     public List listFormBack(SearchFormVO searchFormVO) {
         String sql = "select * from BIS_FORM_BACK t where 1=1 ";
-        sql += createSearchSql(searchFormVO);
+//        sql += createSearchSql(searchFormVO);
         sql += " order by t.DEPARTDATE desc";
         sql = PageUtil.createOraclePageSQL(sql,searchFormVO.getPage(),searchFormVO.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -83,21 +83,5 @@ public class ExportDao {
         List<FormBack> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(FormBack.class));
         return list;
     }
-
-    //导出列表
-    public List<FormGo> outGo(SearchFormVO searchFormVO) {
-        String sql = "select * from BIS_FORM_GO t where 1=1";
-        sql = PageUtil.createOraclePageSQL(sql,searchFormVO.getPage(),searchFormVO.getLimit());
-        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(searchFormVO);
-        List<FormGo> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(FormGo.class));
-        return list;
-    }
-
-    public List<FormBack> outBack(SearchFormVO searchFormVO) {
-        String sql = "select * from BIS_FORM_BACK t where 1=1";
-        return null;
-    }
-
 
 }
