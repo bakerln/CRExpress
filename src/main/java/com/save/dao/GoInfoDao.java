@@ -2,8 +2,7 @@ package com.save.dao;
 
 import com.common.util.page.PageUtil;
 import com.common.util.session.UserSession;
-import com.save.model.GoInfo;
-import com.sys.model.User;
+import com.save.dto.GoInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,72 +20,81 @@ public class GoInfoDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int createGOInfoId() {
-        String sql = "select SEQ_SAVE_GOINFO.Nextval from dual";
-        int goInfoId = jdbcTemplate.queryForObject(sql,Integer.class);
-        return goInfoId;
-    }
+//    public int createGOInfoId() {
+//        String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
+//        int goInfoId = jdbcTemplate.queryForObject(sql,Integer.class);
+//        return goInfoId;
+//    }
 
     //新增信息
-    public int add(GoInfo goInfo) {
-        String sql = "INSERT INTO SYS_GOINFO (ID,FROMSTATION,TRAINNUMBER,FROMDATE,EXITPORTSTATION,OVERSEASSTATION,OVERSEASCOUNTRY,OVERSEASCITY,TRAINSTATE,ORGID,USERID,CREATETIME,TRAINQTY,CARRIAGEQTY,HEAVYQTYTWENTY,EMPTYQTYTWENTY,HEAVYQTYFORTY,EMPTYQTYFORTY,HEAVYQTYFORTYFIVE,EMPTYQTYFORTYFIVE,TEU,COLDTEU,COLDWEIGHT,REMARK,ISDELETE,SAVETYPE) " +
-                "VALUES(:id,:fromStation,:trainNumber,:fromDate,:exitPortStation,:overseasStation,:overseasCountry,:overseasCity,:trainState,:orgID,:userID,:createTime,:trainQty,:carriageQty,:HeavyQtyTwenty,:EmptyQtyTwenty,:HeavyQtyForty,:EmptyQtyForty,:HeavyQtyFortyfive,:EmptyQtyFortyfive,:TEU,:coldTEU,:coldWeight,:remark,:isDelete,:saveType)";
-
+    public int add(GoInfoVO goInfoVO) {
+        String sql = "INSERT INTO BIS_FORM_GO (ID,FROMSTATION,TRAINNUMBER,DEPARTDATE,EXITPORTSTATION,OVERSEASSTATION,OVERSEASCOUNTRY,OVERSEASCITY,TRAINTYPE,ORGID,USERID,CREATETIME,TRAINQTY,CARRIAGEQTY,HEAVYQTYTWENTY,EMPTYQTYTWENTY,HEAVYQTYFORTY,EMPTYQTYFORTY,HEAVYQTYFORTYFIVE,EMPTYQTYFORTYFIVE,TEU,COLDTEU,COLDWEIGHT,REMARK,STATUS,TOTALLOAD) " +
+                "VALUES(:id,:fromStation,:trainNumber,:departDate,:exitPortStation,:overseasStation,:overseasCountry,:overseasCity,:trainType,:orgID,:userID,:createTime,:trainQty,:carriageQty,:HeavyQtyTwenty,:EmptyQtyTwenty,:HeavyQtyForty,:EmptyQtyForty,:HeavyQtyFortyfive,:EmptyQtyFortyfive,:TEU,:coldTEU,:coldWeight,:remark,:status,:totalLoad)";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
     }
 
     //修改信息
-    public int update(GoInfo goInfo) {
-        String sql = "update SYS_GOINFO set FROMSTATION=:fromStation,TRAINNUMBER=:trainNumber,FROMDATE=:fromDate,EXITPORTSTATION=:exitPortStation,OVERSEASSTATION=:overseasStation,OVERSEASCOUNTRY=:overseasCountry,OVERSEASCITY=:overseasCity,TRAINSTATE=:trainState,UPDATETIME=:updateTime,TRAINQTY=:trainQty,CARRIAGEQTY=:carriageQty,HEAVYQTYTWENTY=:HeavyQtyTwenty,EMPTYQTYTWENTY=:EmptyQtyTwenty,HEAVYQTYforty=:HeavyQtyForty,EMPTYQTYFORTY=:EmptyQtyForty,HEAVYQTYFORTYFIVE=:HeavyQtyFortyfive,EMPTYQTYFORTYFIVE=:EmptyQtyFortyfive,TEU=:TEU,COLDTEU=:coldTEU,COLDWEIGHT=:coldWeight,REMARK=:remark where ID=:id";
+    public int update(GoInfoVO goInfoVO) {
+        String sql = "update BIS_FORM_GO set FROMSTATION=:fromStation,TRAINNUMBER=:trainNumber,DEPARTDATE=:departDate,EXITPORTSTATION=:exitPortStation,OVERSEASSTATION=:overseasStation,OVERSEASCOUNTRY=:overseasCountry,OVERSEASCITY=:overseasCity,TRAINTYPE=:trainType,UPDATETIME=:updateTime,TRAINQTY=:trainQty,CARRIAGEQTY=:carriageQty,HEAVYQTYTWENTY=:HeavyQtyTwenty,EMPTYQTYTWENTY=:EmptyQtyTwenty,HEAVYQTYforty=:HeavyQtyForty,EMPTYQTYFORTY=:EmptyQtyForty,HEAVYQTYFORTYFIVE=:HeavyQtyFortyfive,EMPTYQTYFORTYFIVE=:EmptyQtyFortyfive,TEU=:TEU,COLDTEU=:coldTEU,COLDWEIGHT=:coldWeight,REMARK=:remark,TOTALLOAD=:totalLoad,STATUS=:status where ID=:id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
     }
 
     //删除信息
-    public int delete(GoInfo goInfo) {
-        String sql = "UPDATE SYS_GOINFO SET ISDELETE=:isDelete WHERE ID=id";
+    public int delete(GoInfoVO goInfoVO) {
+        String sql = "UPDATE BIS_FORM_GO SET STATUS=:status WHERE ID=id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
     }
 
     //展示信息
-    public int listCount(GoInfo goInfo,UserSession userSession) {
+    public int listCount(GoInfoVO goInfoVO,UserSession userSession) {
         int userid = userSession.getUserId();
-        String sql = "select count(*) from SYS_GOINFO where USERID = "+userid+" and ISDELETE=1";
+        String sql = "select count(*) from BIS_FORM_GO where USERID = "+userid+" and STATUS="+goInfoVO.getStatus();
+
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.queryForObject(sql, paramSource, Integer.class);
     }
 
-    public List<GoInfo> listGoinfo(GoInfo goInfo,UserSession userSession) {
+    public List<GoInfoVO> listGoinfo(GoInfoVO goInfoVO,UserSession userSession) {
         int userid = userSession.getUserId();
-        String sql = "select * from SYS_GOINFO where USERID="+userid+" and ISDELETE=1";
-        sql = PageUtil.createOraclePageSQL(sql, goInfo.getPage(), goInfo.getLimit());
+        String sql;
+        if(goInfoVO.getStatus()==4)
+        {
+            sql = "select * from BIS_FORM_GO where USERID="+userid+" and STATUS!=3";
+        }
+        else {
+            sql = "select * from BIS_FORM_GO where USERID=" + userid + " and STATUS=" + goInfoVO.getStatus();
+        }
+        sql = PageUtil.createOraclePageSQL(sql, goInfoVO.getPage(), goInfoVO.getLimit());
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
-        List<GoInfo> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(GoInfo.class));
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
+        List<GoInfoVO> list = namedParameterJdbcTemplate.query(sql, paramSource, new BeanPropertyRowMapper<>(GoInfoVO.class));
         return list;
     }
 
     //提交数据
-    public int submit(GoInfo goInfo) {
-        String sql = "UPDATE SYS_GOINFO SET SAVETYPE=:saveType WHERE ID=:id";
+    public int submit(GoInfoVO goInfoVO) {
+        String sql = "UPDATE BIS_FORM_GO SET STATUS=:status WHERE ID=:id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
-        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfo);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
     }
 
 
     public int createTrainId() {
-        String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
-        return jdbcTemplate.queryForObject(sql,Integer.class);
-    }
+    String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
+
+    return jdbcTemplate.queryForObject(sql,Integer.class);
+}
     public  String createDate() {
         String sql = "select to_char(sysdate,'yyyyMMdd') from dual";
+
         return jdbcTemplate.queryForObject(sql,String.class);
     }
 }

@@ -5,15 +5,15 @@ import com.common.util.page.SearchPage;
 import java.util.Date;
 
 public class GoInfo extends SearchPage{
-    private int id; //信息ID
+    private String id; //信息ID
     private String fromStation; //发站
     private String trainNumber; //车号
-    private Date fromDate; //发车日期
+    private Date departDate; //发车日期
     private String exitPortStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
-    private int trainState; //车次类型 1：中欧 2：中亚
+    private int trainType; //车次类型 1：中欧 2：中亚
     private int orgID; //所属单位id
     private int userID; //添加人id
     private Date createTime; //录入时间
@@ -30,15 +30,14 @@ public class GoInfo extends SearchPage{
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
-    private int isDelete; //是否删除 1：可用  2：删除
-    private int saveType;// 存储状态 1：暂存 2：提交
+    private int status; //是否删除 1：暂存  2：提交 3：删除
+    private int totalLoad;//整车数
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,12 +57,12 @@ public class GoInfo extends SearchPage{
         this.trainNumber = trainNumber;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    public Date getDepartDate() {
+        return departDate;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setDepartDate(Date departDate) {
+        this.departDate = departDate;
     }
 
     public String getExitPortStation() {
@@ -98,12 +97,12 @@ public class GoInfo extends SearchPage{
         this.overseasCity = overseasCity;
     }
 
-    public int getTrainState() {
-        return trainState;
+    public int getTrainType() {
+        return trainType;
     }
 
-    public void setTrainState(int trainState) {
-        this.trainState = trainState;
+    public void setTrainType(int trainType) {
+        this.trainType = trainType;
     }
 
     public int getOrgID() {
@@ -234,20 +233,20 @@ public class GoInfo extends SearchPage{
         this.remark = remark;
     }
 
-    public int getIsDelete() {
-        return isDelete;
+    public int getStatus() {
+        return status;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public int getSaveType() {
-        return saveType;
+    public int getTotalLoad() {
+        return totalLoad;
     }
 
-    public void setSaveType(int saveType) {
-        this.saveType = saveType;
+    public void setTotalLoad(int totalLoad) {
+        this.totalLoad = totalLoad;
     }
 }
 
