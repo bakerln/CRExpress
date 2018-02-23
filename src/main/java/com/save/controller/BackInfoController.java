@@ -56,7 +56,7 @@ public class BackInfoController {
     * @param response
     * @param backInfoVO
     */
-    @RequestMapping(value = "/update", method= RequestMethod.POST)
+    @RequestMapping(value = "/update")
     public void update(HttpServletRequest request, HttpServletResponse response, BackInfoVO backInfoVO) {
         UserSession userSession = SessionUtil.getUserSession(request);
         ResultMsg resultMsg = backInfoService.update(backInfoVO, userSession);

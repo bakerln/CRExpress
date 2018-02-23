@@ -1,20 +1,15 @@
 package com.save.controller;
-
-
 import com.common.util.json.JsonUtil;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.SessionUtil;
 import com.common.util.session.UserSession;
 import com.common.util.web.WebUtil;
-import com.save.model.GoInfo;
 import com.save.service.GoInfoService;
 import com.save.dto.GoInfoVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

@@ -45,7 +45,7 @@ public class GoInfoDao {
 
     //删除信息
     public int delete(GoInfoVO goInfoVO) {
-        String sql = "UPDATE BIS_FORM_GO SET STATUS=:status WHERE ID=id";
+        String sql = "UPDATE BIS_FORM_GO SET STATUS=3 WHERE ID=:id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
@@ -54,8 +54,12 @@ public class GoInfoDao {
     //展示信息
     public int listCount(GoInfoVO goInfoVO,UserSession userSession) {
         int userid = userSession.getUserId();
-        String sql = "select count(*) from BIS_FORM_GO where USERID = "+userid+" and STATUS="+goInfoVO.getStatus();
-
+        String sql;
+        if(goInfoVO.getStatus()==4){
+            sql= "select count(*) from BIS_FORM_GO where USERID = "+userid+" and STATUS !=3";
+        }else {
+            sql = "select count(*) from BIS_FORM_GO where USERID = " + userid + " and STATUS=" + goInfoVO.getStatus();
+        }
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.queryForObject(sql, paramSource, Integer.class);
@@ -80,7 +84,7 @@ public class GoInfoDao {
 
     //提交数据
     public int submit(GoInfoVO goInfoVO) {
-        String sql = "UPDATE BIS_FORM_GO SET STATUS=:status WHERE ID=:id";
+        String sql = "UPDATE BIS_FORM_GO SET STATUS=2 WHERE ID=:id";
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(goInfoVO);
         return namedParameterJdbcTemplate.update(sql, paramSource);
