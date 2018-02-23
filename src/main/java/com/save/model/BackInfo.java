@@ -1,17 +1,19 @@
 package com.save.model;
 
+import com.common.util.page.SearchPage;
+
 import java.util.Date;
 
-public class BackInfo {
-    private int id; //用户ID
+public class BackInfo extends SearchPage {
+    private String id; //用户ID
     private String portStation; //口岸站
     private String trainNumber; //车号
-    private Date fromDate; //发车日期
+    private Date departDate; //发车日期
     private String domesticStation; //国内到站
     private String overseasStation;  //境外发
     private String overseasCountry; //境外发站所属国
     private String overseasCity;  //境外发站所属城市
-    private int trainState; //车次类型 0：中欧 1：中亚
+    private int trainType; //车次类型 0：中欧 1：中亚
     private int orgID; //所属单位id
     private int userID; //添加人id
     private Date createTime; //录入时间
@@ -28,15 +30,14 @@ public class BackInfo {
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
-    private int isDelete; //是否删除 1：可用  2：删除
-    private int saveType;// 存储状态 1：暂存 2：提交
+    private int status; //状态  1：暂存 2.提交 3.删除
+    private int wagonQty;//整车数量
 
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -56,12 +57,12 @@ public class BackInfo {
         this.trainNumber = trainNumber;
     }
 
-    public Date getFromDate() {
-        return fromDate;
+    public Date getDepartDate() {
+        return departDate;
     }
 
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+    public void setDepartDate(Date departDate) {
+        this.departDate = departDate;
     }
 
     public String getDomesticStation() {
@@ -96,12 +97,12 @@ public class BackInfo {
         this.overseasCity = overseasCity;
     }
 
-    public int getTrainState() {
-        return trainState;
+    public int getTrainType() {
+        return trainType;
     }
 
-    public void setTrainState(int trainState) {
-        this.trainState = trainState;
+    public void setTrainType(int trainType) {
+        this.trainType = trainType;
     }
 
     public int getOrgID() {
@@ -232,19 +233,21 @@ public class BackInfo {
         this.remark = remark;
     }
 
-    public int getIsDelete() {
-        return isDelete;
+    public int getStatus() {
+        return status;
     }
 
-    public void setIsDelete(int isDelete) {
-        this.isDelete = isDelete;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public int getSaveType() {
-        return saveType;
+    public int getWagonQty() {
+        return wagonQty;
     }
 
-    public void setSaveType(int saveType) {
-        this.saveType = saveType;
+    public void setWagonQty(int wagonQty) {
+        this.wagonQty = wagonQty;
     }
 }
+
+
