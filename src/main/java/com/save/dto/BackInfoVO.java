@@ -8,30 +8,30 @@ public class BackInfoVO extends SearchPage {
     private String id; //用户ID
     private String portStation; //口岸站
     private String trainNumber; //车号
-    private String departDate; //发车日期
+    private Date departDate; //发车日期
     private String domesticStation; //国内到站
     private String overseasStation;  //境外发
     private String overseasCountry; //境外发站所属国
     private String overseasCity;  //境外发站所属城市
-    private int trainType; //车次类型 1：中欧 2：中亚
-    private int orgID; //所属单位id
-    private int userID; //添加人id
-    private String createTime; //录入时间
-    private String updateTime; //更新时间
-    private int trainQty; //列数
-    private int carriageQty; //车数
-    private int HeavyQtyTwenty; //20尺重箱数
-    private int EmptyQtyTwenty; //20尺空箱数
-    private int HeavyQtyForty; //40尺重箱数
-    private int EmptyQtyForty; //40尺空箱数
-    private int HeavyQtyFortyfive; //45尺重箱数
-    private int EmptyQtyFortyfive; //45尺空箱数
-    private int TEU; //折合TEU
-    private int coldTEU; //其中冷藏箱TEU
-    private int coldWeight; //冷藏箱重量
+    private String trainType; //车次类型 1：中欧 2：中亚
+    private String orgID; //所属单位id
+    private String userID; //添加人id
+    private Date createTime; //录入时间
+    private Date updateTime; //更新时间
+    private String trainQty; //列数
+    private String carriageQty; //车数
+    private String HeavyQtyTwenty; //20尺重箱数
+    private String EmptyQtyTwenty; //20尺空箱数
+    private String HeavyQtyForty; //40尺重箱数
+    private String EmptyQtyForty; //40尺空箱数
+    private String HeavyQtyFortyfive; //45尺重箱数
+    private String EmptyQtyFortyfive; //45尺空箱数
+    private String TEU; //折合TEU
+    private String coldTEU; //其中冷藏箱TEU
+    private String coldWeight; //冷藏箱重量
     private String remark; //备注
-    private int status; //状态  1：暂存 2.提交 3.删除
-    private int totalLoad;//整车数量
+    private String status; //状态  1：暂存 2.提交 3.删除
+    private String totalLoad;//整车数量
 
     public String getId() {
         return id;
@@ -57,11 +57,11 @@ public class BackInfoVO extends SearchPage {
         this.trainNumber = trainNumber;
     }
 
-    public String getDepartDate() {
+    public Date getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(String departDate) {
+    public void setDepartDate(Date departDate) {
         this.departDate = departDate;
     }
 
@@ -97,131 +97,131 @@ public class BackInfoVO extends SearchPage {
         this.overseasCity = overseasCity;
     }
 
-    public int getTrainType() {
+    public String getTrainType() {
         return trainType;
     }
 
-    public void setTrainType(int trainType) {
+    public void setTrainType(String trainType) {
         this.trainType = trainType;
     }
 
-    public int getOrgID() {
+    public String getOrgID() {
         return orgID;
     }
 
-    public void setOrgID(int orgID) {
+    public void setOrgID(String orgID) {
         this.orgID = orgID;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(String updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
-    public int getTrainQty() {
+    public String getTrainQty() {
         return trainQty;
     }
 
-    public void setTrainQty(int trainQty) {
+    public void setTrainQty(String trainQty) {
         this.trainQty = trainQty;
     }
 
-    public int getCarriageQty() {
+    public String getCarriageQty() {
         return carriageQty;
     }
 
-    public void setCarriageQty(int carriageQty) {
+    public void setCarriageQty(String carriageQty) {
         this.carriageQty = carriageQty;
     }
 
-    public int getHeavyQtyTwenty() {
+    public String getHeavyQtyTwenty() {
         return HeavyQtyTwenty;
     }
 
-    public void setHeavyQtyTwenty(int heavyQtyTwenty) {
+    public void setHeavyQtyTwenty(String heavyQtyTwenty) {
         HeavyQtyTwenty = heavyQtyTwenty;
     }
 
-    public int getEmptyQtyTwenty() {
+    public String getEmptyQtyTwenty() {
         return EmptyQtyTwenty;
     }
 
-    public void setEmptyQtyTwenty(int emptyQtyTwenty) {
+    public void setEmptyQtyTwenty(String emptyQtyTwenty) {
         EmptyQtyTwenty = emptyQtyTwenty;
     }
 
-    public int getHeavyQtyForty() {
+    public String getHeavyQtyForty() {
         return HeavyQtyForty;
     }
 
-    public void setHeavyQtyForty(int heavyQtyForty) {
+    public void setHeavyQtyForty(String heavyQtyForty) {
         HeavyQtyForty = heavyQtyForty;
     }
 
-    public int getEmptyQtyForty() {
+    public String getEmptyQtyForty() {
         return EmptyQtyForty;
     }
 
-    public void setEmptyQtyForty(int emptyQtyForty) {
+    public void setEmptyQtyForty(String emptyQtyForty) {
         EmptyQtyForty = emptyQtyForty;
     }
 
-    public int getHeavyQtyFortyfive() {
+    public String getHeavyQtyFortyfive() {
         return HeavyQtyFortyfive;
     }
 
-    public void setHeavyQtyFortyfive(int heavyQtyFortyfive) {
+    public void setHeavyQtyFortyfive(String heavyQtyFortyfive) {
         HeavyQtyFortyfive = heavyQtyFortyfive;
     }
 
-    public int getEmptyQtyFortyfive() {
+    public String getEmptyQtyFortyfive() {
         return EmptyQtyFortyfive;
     }
 
-    public void setEmptyQtyFortyfive(int emptyQtyFortyfive) {
+    public void setEmptyQtyFortyfive(String emptyQtyFortyfive) {
         EmptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public int getTEU() {
+    public String getTEU() {
         return TEU;
     }
 
-    public void setTEU(int TEU) {
+    public void setTEU(String TEU) {
         this.TEU = TEU;
     }
 
-    public int getColdTEU() {
+    public String getColdTEU() {
         return coldTEU;
     }
 
-    public void setColdTEU(int coldTEU) {
+    public void setColdTEU(String coldTEU) {
         this.coldTEU = coldTEU;
     }
 
-    public int getColdWeight() {
+    public String getColdWeight() {
         return coldWeight;
     }
 
-    public void setColdWeight(int coldWeight) {
+    public void setColdWeight(String coldWeight) {
         this.coldWeight = coldWeight;
     }
 
@@ -233,19 +233,19 @@ public class BackInfoVO extends SearchPage {
         this.remark = remark;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public int getTotalLoad() {
+    public String getTotalLoad() {
         return totalLoad;
     }
 
-    public void setTotalLoad(int totalLoad) {
+    public void setTotalLoad(String totalLoad) {
         this.totalLoad = totalLoad;
     }
 }
