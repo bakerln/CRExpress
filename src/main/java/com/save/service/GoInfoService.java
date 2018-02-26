@@ -41,7 +41,6 @@ public class GoInfoService {
             }
             else{
                 goInfoVO.setId(getId(goInfoVO));//添加信息ID
-                goInfoVO.setCreateTime(new Date());//添加创建时间
                 goInfoVO.setUserID(userSession.getUserId());//添加创建用户ID
                 goInfoVO.setStatus(1);//设置状态为“暂存”
                 goInfoVO.setOrgID(userSession.getOrgId());//添加创建人所属单位
@@ -61,7 +60,6 @@ public class GoInfoService {
              if(2 == goInfoVO.getStatus()){
                  return new ResultMsg(2,"已提交信息不允许修改",null);
              } else {
-                 goInfoVO.setUpdateTime(new Date());//添加更新时间
                  goInfoDao.update(goInfoVO);
              }
          } else {

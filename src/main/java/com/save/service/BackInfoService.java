@@ -1,6 +1,7 @@
 package com.save.service;
 
 import com.alibaba.druid.wall.violation.ErrorCode;
+import com.common.util.date.DateUtil;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
 import com.save.dao.BackInfoDao;
@@ -46,7 +47,6 @@ public class BackInfoService {
                 return new ResultMsg(2,"该用户不允许添加信息",null);
             }else {
                 backInfoVO.setId(backId(backInfoVO));//添加ID
-                backInfoVO.setCreateTime(new Date());//添加创建时间
                 backInfoVO.setUserID(userSession.getUserId());//添加创建人ID
                 backInfoVO.setStatus(1);//设置删除状态为暂存
                 backInfoVO.setOrgID(userSession.getOrgId());//添加所属单位ID
@@ -65,7 +65,6 @@ public class BackInfoService {
             if(2 == backInfoVO.getStatus()){
                 return new ResultMsg(2,"信息已经提交",null);
             } else {
-                backInfoVO.setUpdateTime(new Date());//添加更新时间
                 backInfoDao.update(backInfoVO);
             }
         } else {
