@@ -37,6 +37,7 @@ public class JsonUtil {
      * @param str
      * @return
      */
+    //PS 所有的List对象存放的都是Object，然后再转为Map数据结构
     public static Object toObject(String str,Class clazz){
         try {
             return objectMapper.readValue(str,clazz);
