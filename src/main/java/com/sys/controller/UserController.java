@@ -7,6 +7,7 @@ import com.common.util.session.UserSession;
 import com.common.util.web.WebUtil;
 import com.sys.model.User;
 import com.sys.service.UserService;
+import oracle.sql.OracleJdbc2SQLInput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by liNan on 2018-01-04.
@@ -72,7 +76,7 @@ public class UserController {
     }
 
     /**
-     * 删除用户
+     * 删除单个用户
      * @param request
      * @param response
      * @param user 中的id
@@ -80,6 +84,32 @@ public class UserController {
     @RequestMapping(value = "/delete")
     public void delete(HttpServletRequest request, HttpServletResponse response, User user){
         ResultMsg resultMsg = userService.delete(user);
+        if(0 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(true,"删除成功"));
+        }else if (1 == resultMsg.getErrcode()){
+            WebUtil.out(response,JsonUtil.createOperaStr(false,"删除失败，有子用户未删除"));
+        }
+    }
+
+    /**
+     * 删除列表
+     * @param request
+     * @param response
+     * @param listIdVO
+     */
+    @RequestMapping(value = "/deleteList")
+    public void deleteList(HttpServletRequest request, HttpServletResponse response, String listIdVO){
+        List listIds = (List) JsonUtil.toObject(listIdVO,List.class);
+        String idString = "";
+        for (Object i:listIds) {
+            HashMap map = (HashMap) i;
+            if ("".equals(idString)){
+                idString += map.get("id");
+            }else{
+                idString += "," + map.get("id");
+            }
+        }
+        ResultMsg resultMsg = userService.deleteList(idString);
         if(0 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(true,"删除成功"));
         }else if (1 == resultMsg.getErrcode()){

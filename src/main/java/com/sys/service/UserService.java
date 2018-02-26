@@ -228,4 +228,11 @@ public class UserService {
         } else
             return new ResultMsg(1,"重置失败",null);
     }
+
+    //批量删除(只允许删除普通用户)
+    public ResultMsg deleteList(String idString) {
+        //无子用户
+        userDao.deleteList(idString);
+        return new ResultMsg(0,"删除成功",null);
+    }
 }

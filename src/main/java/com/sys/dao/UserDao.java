@@ -136,4 +136,11 @@ public class UserDao {
         SqlParameterSource paramSource = new BeanPropertySqlParameterSource(user);
         return namedParameterJdbcTemplate.update(sql, paramSource);
     }
+
+    public int deleteList(String idString) {
+        String sql = "update SYS_USER set STATUS='2' where ROLEID = 3 AND ID IN ?";
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+        SqlParameterSource paramSource = new BeanPropertySqlParameterSource(idString);
+        return namedParameterJdbcTemplate.update(sql, paramSource);
+    }
 }
