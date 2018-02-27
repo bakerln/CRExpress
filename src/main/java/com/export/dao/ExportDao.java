@@ -36,16 +36,17 @@ public class ExportDao {
         if (!StringUtil.isNullOrEmpty(searchFormVO.getTrainType())){
             sql += " AND t.ORGID = :orgID";
         }
-//        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateBegin())) {
-//            sql += " and t.DEPARTDATE >= to_date(:departDateBegin ,'yyyy-MM-dd hh24:mi:ss')";
-//        }
-//        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateEnd())) {
-//            sql += " and t.DEPARTDATE <= to_date(:departDateEnd ,'yyyy-MM-dd hh24:mi:ss') ";
-//        }
+        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateBegin())) {
+            sql += " and t.DEPARTDATE >= to_date(:departDateBegin ,'yyyy-MM-dd')";
+        }
+        if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateEnd())) {
+            sql += " and t.DEPARTDATE <= to_date(:departDateEnd ,'yyyy-MM-dd') ";
+        }
         if (!StringUtil.isNullOrEmpty(searchFormVO.getStatus())){
             status = searchFormVO.getStatus();
+            sql += " and STATUS =" + status;
         }
-        sql += " and STATUS =" + status;
+            sql += " and STATUS in('1','2')";
         return sql;
     }
 
