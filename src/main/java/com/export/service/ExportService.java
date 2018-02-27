@@ -1,6 +1,6 @@
 package com.export.service;
 
-import com.common.util.String.StringUtil;
+import com.common.util.string.StringUtil;
 import com.common.util.excel.ExcelUtil;
 import com.common.util.web.WebUtil;
 import com.export.dao.ExportDao;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 /**

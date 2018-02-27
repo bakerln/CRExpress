@@ -1,5 +1,6 @@
 package com.common.util.web;
 
+import com.common.util.global.GlobalConst;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,7 @@ public class WebUtil {
     public static void out(HttpServletResponse response, String str) {
         response.setContentType("text/html; charset=UTF-8");
         //给前端发数据如果涉及到了跨域，需要加允许跨域的head
-        response.setHeader("Access-Control-Allow-Origin", "http://10.1.167.188:8090");
+        response.setHeader("Access-Control-Allow-Origin", GlobalConst.VUEURL);
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -61,7 +62,7 @@ public class WebUtil {
         try {
             response.setContentType("text/html; charset=UTF-8");//text/html; charset=UTF-8//application/msexcel
             response.reset();
-            response.setHeader("Access-Control-Allow-Origin", "http://10.1.167.188:8090");
+            response.setHeader("Access-Control-Allow-Origin", GlobalConst.VUEURL);
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
             response.setHeader("Access-Control-Max-Age", "3600");
             response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

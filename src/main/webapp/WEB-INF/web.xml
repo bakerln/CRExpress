@@ -16,7 +16,9 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <filter>
+
         <filter-name>httpFilter</filter-name>
         <filter-class>com.common.filter.HttpFilter</filter-class>
     </filter>
@@ -45,7 +47,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--部署applicationContext的xml文件-->
+    <!--部署ApplicationContext的xml文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/applicationContext.xml</param-value>

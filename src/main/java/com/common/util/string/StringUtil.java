@@ -1,4 +1,4 @@
-package com.common.util.String;
+package com.common.util.string;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
