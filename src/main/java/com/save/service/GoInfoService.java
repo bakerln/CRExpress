@@ -1,6 +1,7 @@
 package com.save.service;
 
 import com.alibaba.druid.wall.violation.ErrorCode;
+import com.common.util.date.DateUtil;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
 import com.save.dao.GoInfoDao;
@@ -27,7 +28,7 @@ public class GoInfoService {
     public String getId(GoInfoVO goInfoVO) {
         int id = goInfoDao.createTrainId();
         String date = goInfoDao.createDate();
-        int flag = goInfoVO.getTrainType();
+        String flag = goInfoVO.getTrainType();
         String idString = date + flag + id;
         System.out.println(idString);
         return idString;
@@ -41,9 +42,10 @@ public class GoInfoService {
             }
             else{
                 goInfoVO.setId(getId(goInfoVO));//添加信息ID
-                goInfoVO.setUserID(userSession.getUserId());//添加创建用户ID
-                goInfoVO.setStatus(1);//设置状态为“暂存”
-                goInfoVO.setOrgID(userSession.getOrgId());//添加创建人所属单位
+                goInfoVO.setCreateTime(DateUtil.dateToString(new Date(),"yyyy-MM-dd"));//创建添加时间
+                goInfoVO.setUserID(String.valueOf(userSession.getUserId()));//添加创建用户ID
+                goInfoVO.setStatus("1");//设置状态为“暂存”
+                goInfoVO.setOrgID(String.valueOf(userSession.getOrgId()));//添加创建人所属单位
                 goInfoDao.add(goInfoVO);
             }
             //判断数据合法性 数据合法性规则未知
@@ -57,9 +59,10 @@ public class GoInfoService {
      public ResultMsg update(GoInfoVO goInfoVO, UserSession userSession) {
          if (userSession != null) {
              //判断存储状态
-             if(2 == goInfoVO.getStatus()){
+             if("2" == goInfoVO.getStatus()){
                  return new ResultMsg(2,"已提交信息不允许修改",null);
              } else {
+                 goInfoVO.setUpdateTime(DateUtil.dateToString(new Date(),"yyyy-MM-dd"));//添加更新时间
                  goInfoDao.update(goInfoVO);
              }
          } else {
@@ -73,10 +76,10 @@ public class GoInfoService {
    public ResultMsg delete(GoInfoVO goInfoVO, UserSession userSession) {
        if (userSession != null) {
            //判断存储状态
-           if (2 == goInfoVO.getStatus()) {
+           if ("2" .equals( goInfoVO.getStatus())) {
                return new ResultMsg(2, "已提交信息不允许删除", null);
            } else {
-               goInfoVO.setStatus(3);//设置状态为删除
+               goInfoVO.setStatus("3");//设置状态为删除
                goInfoDao.delete(goInfoVO);
            }
        } else {
@@ -86,8 +89,7 @@ public class GoInfoService {
    }
 
     //信息展示
-    public int listCount(GoInfoVO goInfoVO,UserSession userSession) {
-        return goInfoDao.listCount(goInfoVO,userSession);
+    public int listCount(GoInfoVO goInfoVO,UserSession userSession) { return goInfoDao.listCount(goInfoVO,userSession);
     }
     public List<GoInfoVO> listGoinfo(GoInfoVO goInfoVO,UserSession userSession) {
         List<GoInfoVO> goInfoList = goInfoDao.listGoinfo(goInfoVO,userSession);
@@ -98,10 +100,10 @@ public class GoInfoService {
     public ResultMsg submit(GoInfoVO goInfoVO, UserSession userSession) {
         if (userSession != null) {
             //判断是否删除
-            if (2 == goInfoVO.getStatus()) {
+            if ("2".equals( goInfoVO.getStatus())) {
                 return new ResultMsg(2, "已提交信息不允许再次提交", null);
             } else {
-                goInfoVO.setStatus(2);//设置存储状态为提交
+                goInfoVO.setStatus("2");//设置存储状态为提交
                 goInfoDao.submit(goInfoVO);
             }
         } else {

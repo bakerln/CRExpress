@@ -20,11 +20,7 @@ public class GoInfoDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-//    public int createGOInfoId() {
-//        String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
-//        int goInfoId = jdbcTemplate.queryForObject(sql,Integer.class);
-//        return goInfoId;
-//    }
+
 
     //新增信息
     public int add(GoInfoVO goInfoVO) {
@@ -55,9 +51,10 @@ public class GoInfoDao {
     public int listCount(GoInfoVO goInfoVO,UserSession userSession) {
         int userid = userSession.getUserId();
         String sql;
-        if(goInfoVO.getStatus()==4){
+        if("4".equals(goInfoVO.getStatus()) ){
             sql= "select count(*) from BIS_FORM_GO where USERID = "+userid+" and STATUS !=3";
-        }else {
+        }
+        else {
             sql = "select count(*) from BIS_FORM_GO where USERID = " + userid + " and STATUS=" + goInfoVO.getStatus();
         }
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
@@ -68,7 +65,7 @@ public class GoInfoDao {
     public List<GoInfoVO> listGoinfo(GoInfoVO goInfoVO,UserSession userSession) {
         int userid = userSession.getUserId();
         String sql;
-        if(goInfoVO.getStatus()==4)
+        if("4".equals(goInfoVO.getStatus()))
         {
             sql = "select * from BIS_FORM_GO where USERID="+userid+" and STATUS!=3";
         }

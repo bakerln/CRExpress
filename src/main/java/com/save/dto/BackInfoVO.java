@@ -8,7 +8,7 @@ public class BackInfoVO extends SearchPage {
     private String id; //用户ID
     private String portStation; //口岸站
     private String trainNumber; //车号
-    private Date departDate; //发车日期
+    private String departDate; //发车日期
     private String domesticStation; //国内到站
     private String overseasStation;  //境外发
     private String overseasCountry; //境外发站所属国
@@ -16,8 +16,8 @@ public class BackInfoVO extends SearchPage {
     private String trainType; //车次类型 1：中欧 2：中亚
     private String orgID; //所属单位id
     private String userID; //添加人id
-    private Date createTime; //录入时间
-    private Date updateTime; //更新时间
+    private String createTime; //录入时间
+    private String updateTime; //更新时间
     private String trainQty; //列数
     private String carriageQty; //车数
     private String HeavyQtyTwenty; //20尺重箱数
@@ -57,11 +57,11 @@ public class BackInfoVO extends SearchPage {
         this.trainNumber = trainNumber;
     }
 
-    public Date getDepartDate() {
+    public String getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(Date departDate) {
+    public void setDepartDate(String departDate) {
         this.departDate = departDate;
     }
 
@@ -121,19 +121,19 @@ public class BackInfoVO extends SearchPage {
         this.userID = userID;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

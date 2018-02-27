@@ -17,14 +17,6 @@ public class BackInfoDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public int createTrainId() {
-        String sql = "select SEQ_BIS_TRAIN.Nextval from dual";
-        return jdbcTemplate.queryForObject(sql,Integer.class);
-    }
-    public  String createDate() {
-        String sql = "select to_char(sysdate,'yyyyMMdd') from dual";
-        return jdbcTemplate.queryForObject(sql,String.class);
-    }
     //新增信息
     public int add(BackInfoVO backInfoVO){
         String sql = "INSERT INTO BIS_FORM_BACK(ID,PORTSTATION,TRAINNUMBER,DEPARTDATE,DOMESTICSTATION,OVERSEASSTATION,OVERSEASCOUNTRY,OVERSEASCITY,TRAINTYPE,ORGID,USERID,CREATETIME,TRAINQTY,CARRIAGEQTY,HEAVYQTYTWENTY,EMPTYQTYTWENTY,HEAVYQTYFORTY,EMPTYQTYFORTY,HEAVYQTYFORTYFIVE,EMPTYQTYFORTYFIVE,TEU,COLDTEU,COLDWEIGHT,REMARK,STATUS,TOTALLOAD)"+
@@ -56,7 +48,7 @@ public class BackInfoDao {
     public int listCount(BackInfoVO backInfoVO, UserSession userSession) {
         int userid = userSession.getUserId();
         String sql;
-        if(backInfoVO.getStatus() == 4){
+        if("4".equals(backInfoVO.getStatus())){
             sql = "select count(*) from BIS_FORM_BACK where USERID = " + userid + " and STATUS !=3";
         }
 else{
@@ -70,7 +62,7 @@ else{
     public List<BackInfoVO> listBackinfo(BackInfoVO backInfoVO, UserSession userSession) {
         int userid = userSession.getUserId();
         String sql;
-        if (backInfoVO.getStatus() == 4) {
+        if ("4".equals(backInfoVO.getStatus())) {
             sql = "select * from BIS_FORM_BACK where USERID=" + userid + " and STATUS!=3";
         } else {
             sql = "select * from BIS_FORM_BACK where USERID=" + userid + " and STATUS=" + backInfoVO.getStatus();
