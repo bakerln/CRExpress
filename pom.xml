@@ -21,6 +21,11 @@
         <jackson.version>2.9.1</jackson.version>
         <UserAgentUtils.version>1.20</UserAgentUtils.version>
         <poi.version>3.14</poi.version>
+        <jedis.version>2.9.0</jedis.version>
+        <spring-data-redis.version>1.7.2.RELEASE</spring-data-redis.version>
+        <log4j.version>1.2.17</log4j.version>
+        <jcl.slf4j.version>1.7.21</jcl.slf4j.version>
+        <logback.version>1.1.7</logback.version>
     </properties>
 
     <dependencies>
@@ -132,7 +137,7 @@
             <artifactId>UserAgentUtils</artifactId>
             <version>${UserAgentUtils.version}</version>
         </dependency>
-        <!-- POI -->
+        <!-- POI 提供API给Java程序对Microsoft Office格式档案读和写的功能-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -143,7 +148,39 @@
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
+        <!-- 日志文件管理包 start -->
+        <!--<dependency>-->
+            <!--<groupId>log4j</groupId>-->
+            <!--<artifactId>log4j</artifactId>-->
+            <!--<version>${log4j.version}</version>-->
+        <!--</dependency>-->
 
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>jcl-over-slf4j</artifactId>-->
+            <!--<version>${jcl.slf4j.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>ch.qos.logback</groupId>-->
+            <!--<artifactId>logback-classic</artifactId>-->
+            <!--<version>${logback.version}</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> <version>${slf4j.version}</version> </dependency>
+            <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> <version>${slf4j.version}</version> </dependency> -->
+        <!-- 日志文件管理包 end -->
     </dependencies>
     <build>
         <finalName>CRExpress</finalName>

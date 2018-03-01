@@ -144,9 +144,9 @@ public class UserController {
     @RequestMapping(value = "/listUser")
     public void listUser(HttpServletRequest request, HttpServletResponse response,User user){
         UserSession userSession = SessionUtil.getUserSession(request);
-        userSession.setLimit(user.getLimit());
-        userSession.setPage(user.getPage());
         if (null != userSession){
+            userSession.setLimit(user.getLimit());
+            userSession.setPage(user.getPage());
             int count = userService.listCount(userSession);
             String json = JsonUtil.createPageJson(count,userService.listUser(userSession));
             WebUtil.out(response,json);

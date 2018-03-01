@@ -25,7 +25,7 @@ public class User extends SearchPage{
     private String mobile;// 手机
 
 
-//    private string default_module;// 默认模块
+//    private String default_module;// 默认模块
 
 
     public int getId() {

@@ -1,7 +1,7 @@
 package com.sys.service;
 
-import com.common.util.string.Md5SaltUtil;
-import com.common.util.string.StringUtil;
+import com.common.util.String.Md5SaltUtil;
+import com.common.util.String.StringUtil;
 import com.common.util.global.GlobalConst;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.UserSession;
