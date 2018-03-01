@@ -259,7 +259,7 @@ public class ExcelUtil {
         HSSFCell titleCell = titleRow.createCell(0);
         titleCell.setCellStyle(titleStyle);
         titleCell.setCellValue(titleName);
-        sheet.addMergedRegion(new CellRangeAddress(0,0,0,19));//起始行,结束行,起始列,结束列
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,20));//起始行,结束行,起始列,结束列
 
 
         //合并单元格
@@ -276,6 +276,7 @@ public class ExcelUtil {
         sheet.addMergedRegion(new CellRangeAddress(1,1,10,16));
         sheet.addMergedRegion(new CellRangeAddress(1,1,17,18));
         sheet.addMergedRegion(new CellRangeAddress(1,3,19,19));
+        sheet.addMergedRegion(new CellRangeAddress(1,3,20,20));
         sheet.addMergedRegion(new CellRangeAddress(2,2,10,11));
         sheet.addMergedRegion(new CellRangeAddress(2,2,12,13));
         sheet.addMergedRegion(new CellRangeAddress(2,2,14,15));
@@ -286,7 +287,7 @@ public class ExcelUtil {
         //赋值（一行一行）first line
         HSSFRow firstRow = sheet.createRow(1);
         String[] firstTitles = {"序号","口岸站","发车车次","发车日期","国内到站","境外发站","境外发站所属国家","境外发站所属城市","列数","车数","箱数"};
-        for (int i = 0;i <= 19; i++){
+        for (int i = 0;i <= 20; i++){
             HSSFCell firstRowCell = firstRow.createCell(i);
             if (i<firstTitles.length){
                 firstRowCell.setCellStyle(contentStyle);
@@ -300,11 +301,14 @@ public class ExcelUtil {
         firstRowCell18.setCellValue("其中冷藏箱");
         HSSFCell firstRowCell19 = firstRow.createCell(19);
         firstRowCell19.setCellStyle(contentStyle);
-        firstRowCell19.setCellValue("备注");
+        firstRowCell19.setCellValue("整车");
+        HSSFCell firstRowCell20 = firstRow.createCell(20);
+        firstRowCell20.setCellStyle(contentStyle);
+        firstRowCell20.setCellValue("备注");
 
         //赋值（一行一行）second line
         HSSFRow secondRow = sheet.createRow(2);
-        for (int i = 0;i <= 19; i++){
+        for (int i = 0;i <= 20; i++){
             HSSFCell secondRowCell = secondRow.createCell(i);
             secondRowCell.setCellStyle(contentStyle);
         }
@@ -329,7 +333,7 @@ public class ExcelUtil {
 
         //赋值（一行一行）third line
         HSSFRow thirdRow = sheet.createRow(3);
-        for (int i = 0;i <= 19; i++){
+        for (int i = 0;i <= 20; i++){
             HSSFCell thirdRowCell = thirdRow.createCell(i);
             thirdRowCell.setCellStyle(contentStyle);
         }

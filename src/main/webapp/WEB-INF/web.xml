@@ -18,7 +18,6 @@
     </filter-mapping>
 
     <filter>
-
         <filter-name>httpFilter</filter-name>
         <filter-class>com.common.filter.HttpFilter</filter-class>
     </filter>

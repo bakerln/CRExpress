@@ -11,7 +11,7 @@ public class FormGo extends SearchPage{
 
     private String fromStation; //发站
     private String trainNumber; //车号
-    private Date departDate; //发车日期
+    private String departDate; //发车日期
     private String exitportStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
@@ -34,8 +34,8 @@ public class FormGo extends SearchPage{
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
     private int orgId; //所属路局id
     private int userId; //添加人id
-    private Date createTime; //录入时间
-    private Date updateTime; //更新时间
+    private String createTime; //录入时间
+    private String updateTime; //更新时间
     private int status;//状态  1：暂存 2：提交 3：删除
 
     public String getFromStation() {
@@ -54,11 +54,11 @@ public class FormGo extends SearchPage{
         this.trainNumber = trainNumber;
     }
 
-    public Date getDepartDate() {
+    public String getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(Date departDate) {
+    public void setDepartDate(String departDate) {
         this.departDate = departDate;
     }
 
@@ -230,19 +230,19 @@ public class FormGo extends SearchPage{
         this.userId = userId;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

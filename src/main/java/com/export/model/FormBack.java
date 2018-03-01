@@ -11,7 +11,7 @@ import java.util.Date;
 public class FormBack extends SearchPage{
     private String portStation; //口岸站
     private String trainNumber; //发车车次
-    private Date departDate; //发车日期
+    private String departDate; //发车日期
     private String domesticStation; //国内到站
     private String overseasStation;  //境外发站
     private String overseasCountry; //境外发站所属国家
@@ -34,8 +34,8 @@ public class FormBack extends SearchPage{
     private int trainType; //车次类型 1：中欧 2：中亚 0:未指定
     private int orgID; //所属路局id
     private int userID; //添加人id
-    private Date createTime; //录入时间
-    private Date updateTime; //更新时间
+    private String createTime; //录入时间
+    private String updateTime; //更新时间
     private int status;//状态  1：暂存 2：提交 3：删除
 
     public String getPortStation() {
@@ -54,11 +54,11 @@ public class FormBack extends SearchPage{
         this.trainNumber = trainNumber;
     }
 
-    public Date getDepartDate() {
+    public String getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(Date departDate) {
+    public void setDepartDate(String departDate) {
         this.departDate = departDate;
     }
 
@@ -190,6 +190,14 @@ public class FormBack extends SearchPage{
         this.remark = remark;
     }
 
+    public int getTotalLoad() {
+        return totalLoad;
+    }
+
+    public void setTotalLoad(int totalLoad) {
+        this.totalLoad = totalLoad;
+    }
+
     public String getId() {
         return id;
     }
@@ -222,19 +230,19 @@ public class FormBack extends SearchPage{
         this.userID = userID;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -244,13 +252,5 @@ public class FormBack extends SearchPage{
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getTotalLoad() {
-        return totalLoad;
-    }
-
-    public void setTotalLoad(int totalLoad) {
-        this.totalLoad = totalLoad;
     }
 }

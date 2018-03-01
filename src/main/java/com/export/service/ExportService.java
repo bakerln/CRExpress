@@ -1,6 +1,7 @@
 package com.export.service;
 
-import com.common.util.string.StringUtil;
+import com.common.util.String.StringUtil;
+import com.common.util.date.DateUtil;
 import com.common.util.excel.ExcelUtil;
 import com.common.util.web.WebUtil;
 import com.export.dao.ExportDao;
@@ -45,6 +46,7 @@ public class ExportService {
     //获得列表
     public List listForm(SearchFormVO searchFormVO) {
         if ("formGo".equals(searchFormVO.getFormType())){
+            //TODO 时间格式调整
             return exportDao.listFormGo(searchFormVO);
         } else if ("formBack".equals(searchFormVO.getFormType())){
             return exportDao.listFormBack(searchFormVO);
@@ -65,7 +67,7 @@ public class ExportService {
                     data[i][0] = String.valueOf(i + 1);
                     data[i][1] = StringUtil.getSafeStr(formGoData.getFromStation());
                     data[i][2] = StringUtil.getSafeStr(formGoData.getTrainNumber());
-                    data[i][3] = StringUtil.getSafeStr(formGoData.getDepartDate());
+                    data[i][3] = DateUtil.dateFormat(StringUtil.getSafeStr(formGoData.getDepartDate()));
                     data[i][4] = StringUtil.getSafeStr(formGoData.getExitportStation());
                     data[i][5] = StringUtil.getSafeStr(formGoData.getOverseasStation());
                     data[i][6] = StringUtil.getSafeStr(formGoData.getOverseasCountry());
@@ -81,7 +83,11 @@ public class ExportService {
                     data[i][16] = StringUtil.getSafeStr(formGoData.getTEU());
                     data[i][17] = StringUtil.getSafeStr(formGoData.getColdTEU());
                     data[i][18] = StringUtil.getSafeStr(formGoData.getColdWeight());
-                    data[i][19] = StringUtil.getSafeStr(formGoData.getTotalLoad());
+                    if("1".equals(searchFormVO.getTrainType())){
+                        data[i][19] = "";
+                    }else{
+                        data[i][19] = StringUtil.getSafeStr(formGoData.getTotalLoad());
+                    }
                     data[i][20] = StringUtil.getSafeStr(formGoData.getRemark());
                 }
             }
@@ -94,11 +100,12 @@ public class ExportService {
             String orgString = "";
 
             //判断路局
-            if (!searchFormVO.getOrgID().equals("19")){
+            //空为查询全部
+            if (!StringUtil.isNullOrEmpty(searchFormVO.getOrgID())){
                 Org org = commonDao.getOrg(searchFormVO.getOrgID());
                 orgString = org.getOrgStr();
             }
-            if (searchFormVO.getTrainType().equals("1")){
+            if (("1").equals(searchFormVO.getTrainType())){
                report_name += orgString + "中欧班列去程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
                titleName += orgString + "中欧班列去程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
             } else {
@@ -111,13 +118,13 @@ public class ExportService {
             List<FormBack> list = exportDao.listFormBack(searchFormVO);
             String[][] data = null;
             if (list.size()<=5000) {
-                data = new String[list.size()][20];
+                data = new String[list.size()][21];
                 for (int i = 0; i < list.size(); i++) {
                     FormBack formBackData = list.get(i);
                     data[i][0] = String.valueOf(i + 1);
                     data[i][1] = StringUtil.getSafeStr(formBackData.getPortStation());
                     data[i][2] = StringUtil.getSafeStr(formBackData.getTrainNumber());
-                    data[i][3] = StringUtil.getSafeStr(formBackData.getDepartDate());
+                    data[i][3] = DateUtil.dateFormat(StringUtil.getSafeStr(formBackData.getDepartDate()));
                     data[i][4] = StringUtil.getSafeStr(formBackData.getDomesticStation());
                     data[i][5] = StringUtil.getSafeStr(formBackData.getOverseasStation());
                     data[i][6] = StringUtil.getSafeStr(formBackData.getOverseasCountry());
@@ -133,7 +140,12 @@ public class ExportService {
                     data[i][16] = StringUtil.getSafeStr(formBackData.getTEU());
                     data[i][17] = StringUtil.getSafeStr(formBackData.getColdTEU());
                     data[i][18] = StringUtil.getSafeStr(formBackData.getColdWeight());
-                    data[i][19] = StringUtil.getSafeStr(formBackData.getRemark());
+                    if("1".equals(searchFormVO.getTrainType())){
+                        data[i][19] = "";
+                    }else{
+                        data[i][19] = StringUtil.getSafeStr(formBackData.getTotalLoad());
+                    }
+                    data[i][20] = StringUtil.getSafeStr(formBackData.getRemark());
                 }
             }
             if (list.size()>5000) {
@@ -145,11 +157,11 @@ public class ExportService {
             String orgString = "";
 
             //判断路局
-            if (!searchFormVO.getOrgID().equals("19")){
+            if (!StringUtil.isNullOrEmpty(searchFormVO.getOrgID())){
                 Org org = commonDao.getOrg(searchFormVO.getOrgID());
                 orgString = org.getOrgStr();
             }
-            if (searchFormVO.getTrainType().equals("1")){
+            if (("1").equals(searchFormVO.getTrainType())){
                 report_name += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
                 titleName += orgString + "中欧班列回程运量统计表 " + searchFormVO.getDepartDateBegin() + '-' + searchFormVO.getDepartDateEnd();
             } else {

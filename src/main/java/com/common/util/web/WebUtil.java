@@ -28,6 +28,7 @@ public class WebUtil {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        //带cookie，使得session一致
         response.setHeader("Access-Control-Allow-Credentials", "true");
         try {
             if (str.length() < 100)

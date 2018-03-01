@@ -1,6 +1,6 @@
 package com.export.dao;
 
-import com.common.util.string.StringUtil;
+import com.common.util.String.StringUtil;
 import com.common.util.page.PageUtil;
 import com.export.dto.SearchFormVO;
 import com.export.model.FormBack;
@@ -26,14 +26,13 @@ public class ExportDao {
     private JdbcTemplate jdbcTemplate;
 
     private String createSearchSql(SearchFormVO searchFormVO) {
-        String status = "2";
         String sql = "";
-        //车次类型 1：中欧 2：中亚 0:未指定
+        //车次类型 1：中欧 2：中亚
         if(!StringUtil.isNullOrEmpty(searchFormVO.getTrainType())){
             sql += " AND t.TRAINTYPE = :trainType";
         }
         //所属路局id
-        if (!StringUtil.isNullOrEmpty(searchFormVO.getTrainType())){
+        if (!StringUtil.isNullOrEmpty(searchFormVO.getOrgID())){
             sql += " AND t.ORGID = :orgID";
         }
         if (!StringUtil.isNullOrEmpty(searchFormVO.getDepartDateBegin())) {
@@ -43,10 +42,13 @@ public class ExportDao {
             sql += " and t.DEPARTDATE <= to_date(:departDateEnd ,'yyyy-MM-dd') ";
         }
         if (!StringUtil.isNullOrEmpty(searchFormVO.getStatus())){
-            status = searchFormVO.getStatus();
+            String status = searchFormVO.getStatus();
             sql += " and STATUS =" + status;
-        }
+        }else{
             sql += " and STATUS in('1','2')";
+        }
+
+
         return sql;
     }
 

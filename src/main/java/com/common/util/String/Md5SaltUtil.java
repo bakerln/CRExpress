@@ -1,4 +1,4 @@
-package com.common.util.string;
+package com.common.util.String;
 
 import java.security.MessageDigest;
 
@@ -77,7 +77,7 @@ public class Md5SaltUtil {
         System.out.println(passwordValid);
 
 		/*Md5SaltUtil encoderSha = new Md5SaltUtil(salt, "SHA");
-		string pass2 = encoderSha.encode("test");
+		String pass2 = encoderSha.encode("test");
 		System.out.println(pass2);
 		boolean passwordValid2 = encoderSha.isPasswordValid("1bd98ed329aebc7b2f89424b5a38926e", "test");
 		System.out.println(passwordValid2);*/
