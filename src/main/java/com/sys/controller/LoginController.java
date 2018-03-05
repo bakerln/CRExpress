@@ -1,6 +1,7 @@
 package com.sys.controller;
 
-import com.common.util.string.StringUtil;
+import com.common.redis.RedisUtil;
+import com.common.util.String.StringUtil;
 import com.common.util.json.JsonUtil;
 import com.common.util.json.ResultMsg;
 import com.common.util.session.SessionUtil;
@@ -29,6 +30,9 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+//    @Autowired
+//    private RedisUtil redisUtil;
+
     /**
      * 登录
      * @param request
@@ -37,6 +41,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/checkLogin")
     public void checkLogin(HttpServletRequest request, HttpServletResponse response, UserLoginDTO userLoginDTO) {
+
         //处理用户请求所带信息
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         userLoginDTO.setIp(StringUtil.getIp(request));
@@ -53,6 +58,7 @@ public class LoginController {
             User user = (User) resultMsg.getData();
             UserSession userSession = userService.saveSession(user, userLoginDTO);
             request.getSession().setAttribute("userSession", userSession);
+//            redisUtil.set(String.valueOf(user.getId()),JsonUtil.toStr(userSession));
             //TODO 登录日志（userLoginDTO）
             String ss = JsonUtil.createOperaStr(true, "登录成功",userSession);
             WebUtil.out(response, JsonUtil.createOperaStr(true, "登录成功",userSession));
@@ -70,6 +76,7 @@ public class LoginController {
      */
     @RequestMapping(value = "/index")
     public void index(HttpServletRequest request, HttpServletResponse response) {
+        //每次登陆传一个token（用户id）来判断redis中是否有登陆信息
         UserSession userSession = SessionUtil.getUserSession(request);
         if (userSession != null) {
             ArrayList<String> list = new ArrayList<String>();
@@ -86,6 +93,7 @@ public class LoginController {
     @RequestMapping("/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("userSession");
+//        redisUtil.del(String.valueOf(user.getId()));
 //        request.getSession().invalidate();
         WebUtil.out(response, JsonUtil.createOperaStr(true, "操作成功"));
     }

@@ -9,7 +9,7 @@ public class GoInfo extends SearchPage{
     private String fromStation; //发站
     private String trainNumber; //车号
     private Date departDate; //发车日期
-    private String exitPortStation; //出境口岸站
+    private String exitportStation; //出境口岸站
     private String overseasStation;  //境外到站
     private String overseasCountry; //境外到站所属国
     private String overseasCity;  //境外到站所属城市
@@ -65,12 +65,12 @@ public class GoInfo extends SearchPage{
         this.departDate = departDate;
     }
 
-    public String getExitPortStation() {
-        return exitPortStation;
+    public String getExitportStation() {
+        return exitportStation;
     }
 
-    public void setExitPortStation(String exitPortStation) {
-        this.exitPortStation = exitPortStation;
+    public void setExitportStation(String exitportStation) {
+        this.exitportStation = exitportStation;
     }
 
     public String getOverseasStation() {

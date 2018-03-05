@@ -35,7 +35,6 @@ public class BackInfoController {
      */
     @RequestMapping(value = "/add")
     public void add(HttpServletRequest request, HttpServletResponse response, BackInfoVO backInfoVO) {
-//        UserSession userSession = (UserSession)request.getAttribute("userSession");
         UserSession userSession = SessionUtil.getUserSession(request);
         ResultMsg resultMsg = backInfoService.add(backInfoVO, userSession);
         if (0 == resultMsg.getErrcode()){
