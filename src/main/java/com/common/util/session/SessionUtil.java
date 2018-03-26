@@ -1,5 +1,7 @@
 package com.common.util.session;
 
+import com.common.util.global.GlobalConst;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -14,5 +16,10 @@ public class SessionUtil {
         }else{
             return null;
         }
+    }
+
+    public static void addSession(String name, Object object, HttpServletRequest request) {
+        request.getSession().setAttribute("userSession", object);
+        request.getSession().setMaxInactiveInterval(GlobalConst.SessionTimeOut);
     }
 }

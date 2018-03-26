@@ -57,7 +57,8 @@ public class LoginController {
             //登陆成功
             User user = (User) resultMsg.getData();
             UserSession userSession = userService.saveSession(user, userLoginDTO);
-            request.getSession().setAttribute("userSession", userSession);
+            SessionUtil.addSession("userSession",userSession,request);
+//            request.getSession().setAttribute("userSession", userSession);
 //            redisUtil.set(String.valueOf(user.getId()),JsonUtil.toStr(userSession));
             //TODO 登录日志（userLoginDTO）
             String ss = JsonUtil.createOperaStr(true, "登录成功",userSession);

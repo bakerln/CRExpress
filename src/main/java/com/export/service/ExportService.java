@@ -80,7 +80,7 @@ public class ExportService {
                     data[i][13] = StringUtil.getSafeStr(formGoData.getEmptyQtyForty());
                     data[i][14] = StringUtil.getSafeStr(formGoData.getHeavyQtyFortyfive());
                     data[i][15] = StringUtil.getSafeStr(formGoData.getEmptyQtyFortyfive());
-                    data[i][16] = StringUtil.getSafeStr(formGoData.getTEU());
+                    data[i][16] = StringUtil.getSafeStr(formGoData.getTeu());
                     data[i][17] = StringUtil.getSafeStr(formGoData.getColdTEU());
                     data[i][18] = StringUtil.getSafeStr(formGoData.getColdWeight());
                     if("1".equals(searchFormVO.getTrainType())){
@@ -137,7 +137,7 @@ public class ExportService {
                     data[i][13] = StringUtil.getSafeStr(formBackData.getEmptyQtyForty());
                     data[i][14] = StringUtil.getSafeStr(formBackData.getHeavyQtyFortyfive());
                     data[i][15] = StringUtil.getSafeStr(formBackData.getEmptyQtyFortyfive());
-                    data[i][16] = StringUtil.getSafeStr(formBackData.getTEU());
+                    data[i][16] = StringUtil.getSafeStr(formBackData.getTeu());
                     data[i][17] = StringUtil.getSafeStr(formBackData.getColdTEU());
                     data[i][18] = StringUtil.getSafeStr(formBackData.getColdWeight());
                     if("1".equals(searchFormVO.getTrainType())){

@@ -65,7 +65,7 @@ public class UserController {
         UserSession userSession = SessionUtil.getUserSession(request);
         ResultMsg resultMsg = userService.update(user,userSession);
         if (0 == resultMsg.getErrcode()){
-            WebUtil.out(response,JsonUtil.createOperaStr(true,"修改成功"));
+            WebUtil.out(response,JsonUtil.createOperaStr(true,"请重新登录"));
         }else if(1 == resultMsg.getErrcode()){
             WebUtil.out(response,JsonUtil.createOperaStr(false,"修改失败"));
         }else if(2 == resultMsg.getErrcode()){

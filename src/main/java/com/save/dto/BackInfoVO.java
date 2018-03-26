@@ -26,7 +26,7 @@ public class BackInfoVO extends SearchPage {
     private String EmptyQtyForty; //40尺空箱数
     private String HeavyQtyFortyfive; //45尺重箱数
     private String EmptyQtyFortyfive; //45尺空箱数
-    private String TEU; //折合TEU
+    private String teu; //折合TEU
     private String coldTEU; //其中冷藏箱TEU
     private String coldWeight; //冷藏箱重量
     private String remark; //备注
@@ -201,12 +201,12 @@ public class BackInfoVO extends SearchPage {
         EmptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public String getTEU() {
-        return TEU;
+    public String getTeu() {
+        return teu;
     }
 
-    public void setTEU(String TEU) {
-        this.TEU = TEU;
+    public void setTeu(String teu) {
+        this.teu = teu;
     }
 
     public String getColdTEU() {

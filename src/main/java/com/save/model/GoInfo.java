@@ -26,7 +26,7 @@ public class GoInfo extends SearchPage{
     private int EmptyQtyForty; //40尺空箱数
     private int HeavyQtyFortyfive; //45尺重箱数
     private int EmptyQtyFortyfive; //45尺空箱数
-    private int TEU; //折合TEU
+    private int teu; //折合TEU
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
@@ -201,12 +201,12 @@ public class GoInfo extends SearchPage{
         EmptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public int getTEU() {
-        return TEU;
+    public int getTeu() {
+        return teu;
     }
 
-    public void setTEU(int TEU) {
-        this.TEU = TEU;
+    public void setTeu(int teu) {
+        this.teu = teu;
     }
 
     public int getColdTEU() {

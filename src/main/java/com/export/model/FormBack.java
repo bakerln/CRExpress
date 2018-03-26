@@ -24,7 +24,7 @@ public class FormBack extends SearchPage{
     private int emptyQtyForty; //40尺空箱数
     private int heavyQtyFortyfive; //45尺重箱数
     private int emptyQtyFortyfive; //45尺空箱数
-    private int TEU; //折合TEU
+    private int teu; //折合TEU
     private int coldTEU; //其中冷藏箱TEU
     private int coldWeight; //冷藏箱重量
     private String remark; //备注
@@ -158,12 +158,12 @@ public class FormBack extends SearchPage{
         this.emptyQtyFortyfive = emptyQtyFortyfive;
     }
 
-    public int getTEU() {
-        return TEU;
+    public int getTeu() {
+        return teu;
     }
 
-    public void setTEU(int TEU) {
-        this.TEU = TEU;
+    public void setTeu(int teu) {
+        this.teu = teu;
     }
 
     public int getColdTEU() {
