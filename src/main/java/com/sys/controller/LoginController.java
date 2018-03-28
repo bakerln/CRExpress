@@ -30,8 +30,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private RedisUtil redisUtil;
+    @Autowired
+    private RedisUtil redisUtil;
 
     /**
      * 登录

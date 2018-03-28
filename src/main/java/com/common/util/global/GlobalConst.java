@@ -9,7 +9,7 @@ public class GlobalConst {
 
     public final static String password = "11111111";//初始密码
 
-    public final static String VUEURL = "http://10.1.167.188:8090";
+    public final static String VUEURL = "http://10.1.184.107";
 
     public final static int SessionTimeOut = 30 * 60;//设置单位为秒，设置为-1永不过期
 }
